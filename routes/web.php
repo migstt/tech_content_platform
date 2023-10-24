@@ -5,6 +5,7 @@ use App\Http\Controllers\JournalController;
 use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

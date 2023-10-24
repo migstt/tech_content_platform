@@ -1,0 +1,27 @@
+name: PHPStan Analyze
+run-name: doing continuous integration to repo
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: php-actions/composer@v6
+
+    - uses: php-actions/phpstan@v3
+      with:
+        paths: |
+          app/
+          config/
+          database/
+          public/
+          routes/
+          tests/
+          resources/
