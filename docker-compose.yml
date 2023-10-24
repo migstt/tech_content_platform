@@ -1,0 +1,18 @@
+version: '3'
+services:
+    mysql:
+        container_name: journal-container
+        image: 'mysql'
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'pass'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: 'journal-db'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'pass'
+        volumes:
+            - 'journal-vol:/var/lib/mysql'
+volumes:
+    journal-vol:
+        driver: local
