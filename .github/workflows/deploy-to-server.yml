@@ -1,6 +1,6 @@
 name: Deploy to Production Server
 run-name: ${{ github.actor }} doing continuous deployment to ronins
-#ola
+#ola update
 on: 
   push:
     branches:
