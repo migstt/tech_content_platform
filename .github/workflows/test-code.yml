@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  build-test:
+  phpstan-analyze:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,11 +17,4 @@ jobs:
 
     - uses: php-actions/phpstan@v3
       with:
-        paths: |
-          app/
-          config/
-          database/
-          public/
-          routes/
-          tests/
-          resources/
+        paths: app/ config/ database/ public/ routes/ tests/ resources/
