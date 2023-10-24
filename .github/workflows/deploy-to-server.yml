@@ -1,10 +1,10 @@
 name: Deploy to Production Server
-run-name: ${{ github.actor }} testing CI/CD 
+run-name: ${{ github.actor }} doing continuous deployment to ronins
 #ola
 on: 
   push:
     branches:
-      - prod
+      - production
 jobs:
 
   deploy-to-ronins:
