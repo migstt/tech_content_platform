@@ -1,0 +1,25 @@
+name: Deploy to Production Server
+run-name: ${{ github.actor }} testing CI/CD 
+#ola
+on: 
+  push:
+    branches:
+      - prod
+jobs:
+
+  deploy-to-ronins:
+    name: Deploy to Ronins server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH and pull changes from Github repo 'prod' branch
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          port: ${{ vars.PORT_SERVER }}
+          script: | 
+            ${{ secrets.PULL_SCRIPT }}
