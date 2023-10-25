@@ -43,17 +43,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
 
-    - name: Setup SSH Tunnel
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.PROD_SSH_HOST }}
-        username: ${{ secrets.PROD_SSH_USER }}
-        key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
-        port: ${{ vars.PORT_SERVER }}
-        script: ${{ secrets.PORT_FORWARD_SCRIPT }}
-
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+
+    - name: Setup SSH Tunnel
+      run: ssh -i ${{ secrets.PROD_SSH_PRIVATE_KEY }} -D 8080 -f -C -q -N ${{ secrets.PROD_SSH_USER }}@${{ secrets.PROD_SSH_HOST }}
 
     - name: Run php unit test
       run: vendor/bin/phpunit
