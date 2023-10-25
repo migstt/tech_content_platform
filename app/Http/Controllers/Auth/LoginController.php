@@ -11,15 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function redirectToGoogle()
-        {
+    {
         return Socialite::driver('google')->redirect();
-        }
+    }
 
     public function handleGoogleCallback()
     {
         // Handle user registration or login
         $googleUser = Socialite::driver('google')->user();
-        
+
         // Check if the user already exists in database
         $user = User::all()->where('email', $googleUser->email)->first();
 
