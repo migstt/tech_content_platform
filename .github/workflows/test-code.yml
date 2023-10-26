@@ -51,6 +51,7 @@ jobs:
         echo "${{ secrets.PROD_SSH_PRIVATE_KEY }}" > ssh_key.pem
         chmod 600 ssh_key.pem
         ssh -i ssh_key.pem -D 8080 -f -C -q -N ${{ secrets.PROD_SSH_USER }}@${{ secrets.PROD_SSH_HOST }}
+      shell: bash
 
     - name: Run php unit test
       run: vendor/bin/phpunit
