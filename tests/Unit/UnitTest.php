@@ -2,15 +2,21 @@
 
 namespace Tests\Unit;
 
-use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mockery;
+use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class UnitTest extends TestCase
 {
     use RefreshDatabase;
+    use CreatesApplication;
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutVite();
+    }
     public function test_should_return_users_ordered_by_updated_at_descending()
     {
         // Arrange
