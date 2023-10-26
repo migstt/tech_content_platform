@@ -4,13 +4,11 @@ namespace Tests\Unit;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class UnitTest extends TestCase
 {
     use RefreshDatabase;
-    use CreatesApplication;
     protected function setUp(): void
     {
         parent::setUp();
