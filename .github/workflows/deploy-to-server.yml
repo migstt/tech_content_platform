@@ -1,6 +1,7 @@
 name: Deploy to Production Server
 run-name: Deploy changes to Ronins server
 #ola update
+#hello
 on: 
   push:
     branches:
@@ -14,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH and pull changes from Github repo 'prod' branch
+      - name: Set up SSH and Deploy changes to Ronins Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_SSH_HOST }}
@@ -22,4 +23,9 @@ jobs:
           key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           port: ${{ vars.PORT_SERVER }}
           script: | 
-            ${{ secrets.PULL_SCRIPT }}
+            cd mtrinidad.ronins.site
+            eval "$(ssh-agent)"
+            ssh-add ~/.ssh/mtrininidad-key
+            git pull origin production
+            /usr/local/php82/bin/php composer.phar install
+            /usr/local/php82/bin/php artisan migrate --force
