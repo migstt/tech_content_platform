@@ -1,5 +1,5 @@
 name: PHPStan Analyze && PHPUnit Test
-run-name: PHPStan Analyze && PHPUnit Test on Laravel App
+run-name: PHPStan Analyze and PHPUnit Test
 
 on:
   push:

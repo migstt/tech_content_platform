@@ -1,5 +1,5 @@
 name: Deploy to Production Server
-run-name: Deploy changes to Ronins server
+run-name: Deploy Changes to Ronins Server
 #ola update
 #hello
 on: 
@@ -27,5 +27,5 @@ jobs:
             eval "$(ssh-agent)"
             ssh-add ~/.ssh/mtrininidad-key
             git pull origin production
-            /usr/local/php82/bin/php composer.phar install
+            /usr/local/php82/bin/php composer.phar install --no-dev
             /usr/local/php82/bin/php artisan migrate --force
