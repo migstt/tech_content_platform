@@ -43,6 +43,9 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Migrate Tables to Sqlite Database
+      env: 
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: php artisan migrate --database=sqlite
 
     - name: Run php unit test
