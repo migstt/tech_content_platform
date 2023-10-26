@@ -26,7 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-
+    - name: Copy .env.testing
+      run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
@@ -41,12 +42,18 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+      
+    - name: Generate key
+      run: php artisan key:generate
 
     - name: Migrate Tables to Sqlite Database
       env: 
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: php artisan migrate --database=sqlite
+      run: php artisan migrate
 
     - name: Run php unit test
+      env: 
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
