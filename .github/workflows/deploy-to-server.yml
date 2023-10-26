@@ -1,5 +1,5 @@
 name: Deploy to Production Server
-run-name: continuous deployment to ronins
+run-name: Deploy changes to Ronins server
 #ola update
 on: 
   push:
