@@ -16,6 +16,7 @@
         } else {
             themeToggleDarkIcon.classList.remove('hidden');
         }
+        
     </script>
 
 </head>
@@ -24,9 +25,11 @@
 
     @include('partials.navbar')
 
-    <main class="container">
-        @yield('content')
-    </main>
+    <div class="container w-100 mx-auto">
+        <div class="flex justify-center p-25">
+            @yield('content')
+        </div>
+    </div>
 
     @include('partials.footer')
 </body>
