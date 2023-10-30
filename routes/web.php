@@ -28,7 +28,7 @@ Route::view('/create', 'create-journal')->name('create');
 
 Route::get('/authors', function (){
     return view('authors', ['curUser' => Auth::user(), 'authors' => User::getAllUsers()]);
-});
+})->name('authors');
 
 Route::post('/createjournal', [JournalController::class, 'store'])->name('savejournal');
 
@@ -38,7 +38,3 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/auth/google', 'redirectToGoogle')->name('google.auth');
     Route::get('/auth/google-callback', 'handleGoogleCallback');
 });
-
-// Route::controller(JournalController::class)->group(function () {
-//     Route::post('/createjournal', 'store')->name('savejournal');
-// });
