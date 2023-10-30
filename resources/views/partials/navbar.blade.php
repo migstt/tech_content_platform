@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                <!-- Mobile menu button-->
+                {{-- MOBILE MENU BUTTON --}}
                 <button type="button"
                     class="hover:bg-gray-300 dark:hover:bg-gray-600 dark:bg-gray-700 relative inline-flex items-center justify-center rounded-md p-2 text-gray-600 dark:text-white hover:bg-gray-700"
                     aria-controls="mobile-menu" aria-expanded="false">
@@ -26,18 +26,19 @@
                     <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                         alt="Your Company">
                 </div>
+                {{-- MOBILE VIEW MENU OPTIONS --}}
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="{{ route('home') }}"
                             class="text-black bg-gray-100 hover:bg-gray-400 hover:text-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2 text-sm font-medium">Home</a>
-                            <a href="{{ route('authors') }}"
+                        <a href="{{ route('authors') }}"
                             class="text-black bg-gray-100 hover:bg-gray-400 hover:text-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2 text-sm font-medium">Authors</a>
                     </div>
                 </div>
             </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
+            {{-- DIV FOR TOGGLE MODE, PROFILE DROPDOWN OR SIGN UP BUTTON --}}
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button type="button" id="theme-toggle"
                     class="mr-3 relative rounded-full bg-white dark:bg-gray-800 p-1 text-gray-400 hover:text-black dark:hover:text-white">
                     <span class="absolute -inset-1.5"></span>
@@ -56,38 +57,58 @@
                     </svg>
                 </button>
 
-                <!-- Profile dropdown -->
+                {{-- PROFILE PICTURE DROPDOWN OR GOOGLE SIGNUN --}}
                 <div class="relative ml-3">
-                    <div>
-                        <button type="button"
-                            class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">Open user menu</span>
-                            <img class="h-8 w-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="">
-                        </button>
-                    </div>
-                    <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-0">Your Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-1">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-2">Sign out</a>
+                    <div>        
+                        {{-- PROFILE PICTURE WITH DROPDOWN FOR AUTHENTICATED USERS --}}
+                        @auth
+                            <button type="button"
+                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="absolute -inset-1.5"></span>
+                                <span class="sr-only">Open user menu</span>
+                                <img class="h-8 w-8 rounded-full"
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="">
+                            </button>
+                            <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
+                                tabindex="-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-2">Publish a Journal</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-1">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            </div>
+                        @endauth         
+                        {{-- SIGN IN WITH GOOGLE BUTTON FOR GUEST USERS --}}
+                        @guest
+                            <a href="{{ route('google.auth') }}">
+                                <button id="user-menu-button" type="button"
+                                    class="mt-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                                    <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab"
+                                        data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 488 512">
+                                        <path fill="currentColor"
+                                            d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                                        </path>
+                                    </svg>
+                                    Sign in with Google
+                                </button>
+                            </a>
+                        @endguest
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
+    
+    {{-- MOBILE USER MENU --}}
     <div class="hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="{{ route('home') }}"
                 class="bg-gray-100 hover:bg-gray-300 text-black dark:text-white dark:bg-gray-700 dark:hover:bg-gray-600 block rounded-md px-3 py-2 text-base font-medium"
                 aria-current="page">Home</a>
@@ -96,52 +117,4 @@
                 aria-current="page">Authors</a>
         </div>
     </div>
-    <script>
-        const userMenuButton = document.getElementById("user-menu-button");
-        const userMenu = document.querySelector('[aria-labelledby="user-menu-button"]');
-
-        // Function to toggle the user menu
-        function toggleUserMenu() {
-            if (userMenu.style.display === "block") {
-                userMenu.style.display = "none";
-            } else {
-                userMenu.style.display = "block";
-            }
-        }
-
-        // USER MENU MOBILE
-        // Add a click event listener to the user menu button
-        userMenuButton.addEventListener("click", toggleUserMenu);
-        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
-        const mobileMenu = document.getElementById("mobile-menu");
-        // Function to toggle the mobile menu
-        function toggleMobileMenu() {
-            if (mobileMenu.style.display === "block") {
-                mobileMenu.style.display = "none";
-            } else {
-                mobileMenu.style.display = "block";
-            }
-        }
-        mobileMenuButton.addEventListener("click", toggleMobileMenu);
-
-
-        // TOGGLE DARK OR LIGHT MODE
-        const themeToggle = document.getElementById("theme-toggle");
-        const darkIcon = document.getElementById("theme-toggle-dark-icon");
-        const lightIcon = document.getElementById("theme-toggle-light-icon");
-        const body = document.body;
-
-        themeToggle.addEventListener("click", () => {
-            if (body.classList.contains("dark")) {
-                body.classList.remove("dark");
-                darkIcon.classList.remove("hidden");
-                lightIcon.classList.add("hidden");
-            } else {
-                body.classList.add("dark");
-                darkIcon.classList.add("hidden");
-                lightIcon.classList.remove("hidden");
-            }
-        });
-    </script>
-
 </nav>
