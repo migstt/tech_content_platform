@@ -1,13 +1,14 @@
 @extends('layouts.main')
 @section('content')
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 flex content-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 content-center mt-20 mb-20">
         @forelse($journals as $journal)
             <div
-                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-5 mt-5 relative">
+                class="max-w-sm bg-white border border-gray-200 rounded-lg shadow
+                    dark:bg-gray-800 dark:border-gray-700 mx-5 mt-5 relative">
                 <a href="#">
                     <img class="rounded-t-lg" src="/resources/views/qwe.jpeg" alt="" />
                 </a>
-                <div class="p-5 flex flex-col justify-between h-full">
+                <div class="p-3 flex flex-col h-60 max-h-60">
                     <a href="/journal/{{ $journal->id }}">
                         <h6 class="mb-2 text-1xl font-semibold tracking-tight text-gray-900 dark:text-white">
                             {{ $journal->title }}
@@ -19,7 +20,6 @@
                     </p>
                 </div>
             </div>
-
         @empty
             <p>there's nothing here...</p>
         @endforelse
