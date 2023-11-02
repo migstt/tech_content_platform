@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="mx-20 content-center mt-20 mb-20">
+    <div class="mt-20 mb-20">
         <form method="POST" action="{{ route('savejournal') }}">
             @csrf
             <div class="mb-2">
