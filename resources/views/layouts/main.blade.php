@@ -17,10 +17,8 @@
 
 <body class="blogs-section bg-white dark:bg-gray-900">
     @include('partials.navbar')
-    <div class="container w-100 mx-auto">
-        <div class="flex justify-center p-25">
+    <div class="container w-100 mx-auto justify-center items-center">
             @yield('content')
-        </div>
     </div>
     @include('partials.footer')
 
