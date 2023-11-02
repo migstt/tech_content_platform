@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-20 mb-20 justify-center items-center">
         @forelse($journals as $journal)
             <div
-                class=" bg-white border border-gray-200 rounded-lg shadow
+                class="bg-white border border-gray-200 rounded-lg shadow
                     dark:bg-gray-800 dark:border-gray-700 mx-5 mt-5 relative self-center">
                 <a href="#">
                     <img class="rounded-t-lg" src="/resources/views/qwe.jpeg" alt="" />
