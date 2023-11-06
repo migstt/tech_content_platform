@@ -8,17 +8,26 @@
     @vite('resources/css/app.css')
 
     <style>
-        #navbar {
+        #navbar,
+        #body,
+        .journal-div,
+        .menu-button,
+        .blogs-section,
+        .journal-info {
             transition: 0.5s;
+        }
+
+        .dark-mode {
+            background-color: rgb(31 41 55);
         }
     </style>
 
 </head>
 
-<body class="blogs-section bg-white dark:bg-gray-900">
+<body class="blogs-section bg-white">
     @include('partials.navbar')
-    <div class="container w-100 mx-auto justify-center items-center">
-            @yield('content')
+    <div class="container mx-auto justify-center items-center">
+        @yield('content')
     </div>
     @include('partials.footer')
 
@@ -58,17 +67,19 @@
         const themeToggle = document.getElementById("theme-toggle");
         const darkIcon = document.getElementById("theme-toggle-dark-icon");
         const lightIcon = document.getElementById("theme-toggle-light-icon");
-        const body = document.body;
+        var body = document.body;
 
         themeToggle.addEventListener("click", () => {
             if (body.classList.contains("dark")) {
                 body.classList.remove("dark");
                 darkIcon.classList.remove("hidden");
                 lightIcon.classList.add("hidden");
+                body.classList.toggle("dark-mode");
             } else {
-                body.classList.add("dark");
+                body.classList.toggle("dark");
                 darkIcon.classList.add("hidden");
                 lightIcon.classList.remove("hidden");
+                body.classList.toggle("dark-mode");
             }
         });
 
