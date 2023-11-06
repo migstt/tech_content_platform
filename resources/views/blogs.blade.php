@@ -4,7 +4,7 @@
         @forelse($journals as $journal)
             <div
                 class="bg-white border border-gray-200 rounded-lg shadow
-                    dark:bg-gray-800 dark:border-gray-700 mx-5 mt-5 relative self-center">
+                    dark:bg-gray-800 dark:border-gray-700 mx-5 mt-5 relative self-center journal-div">
                 <a href="#">
                     <img class="rounded-t-lg" src="/resources/views/qwe.jpeg" alt="" />
                 </a>

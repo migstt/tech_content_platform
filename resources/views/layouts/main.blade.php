@@ -8,9 +8,9 @@
     @vite('resources/css/app.css')
 
     <style>
-        #navbar {
-            transition: 0.5s;
-        }
+        #navbar, .journal-div, .menu-button {
+        transition: 0.5s;
+    }
     </style>
 
 </head>
