@@ -4,7 +4,7 @@
         @forelse($journals as $journal)
             <div
                 class="bg-white border border-gray-200 rounded-lg shadow
-                    dark:bg-gray-800 dark:border-gray-700 mx-5 mt-5 relative self-center journal-div">
+                    dark:bg-gray-700 dark:border-gray-700 mx-5 mt-5 relative self-center journal-div">
                 <a href="#">
                     <img class="rounded-t-lg" src="/resources/views/qwe.jpeg" alt="" />
                 </a>
@@ -14,7 +14,7 @@
                             {{ $journal->title }}
                         </h6>
                     </a>
-                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400 mt-auto">
+                    <p class="text-sm font-normal text-gray-500 dark:text-white mt-auto">
                         {{ $journal->author }} <br>
                         {{ date('d M Y', strtotime($journal->created_at)) }}
                     </p>
