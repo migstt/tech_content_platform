@@ -14,7 +14,7 @@
         .menu-button,
         .blogs-section,
         .journal-info,
-        .hashtag-span{
+        .hashtag-span {
             transition: 0.5s;
         }
 
@@ -83,6 +83,7 @@
                 body.classList.toggle("dark-mode");
             }
         });
+
 
 
         //NAVBAR
