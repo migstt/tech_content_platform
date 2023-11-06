@@ -13,7 +13,8 @@
         .journal-div,
         .menu-button,
         .blogs-section,
-        .journal-info {
+        .journal-info,
+        .hashtag-span {
             transition: 0.5s;
         }
 
@@ -82,6 +83,7 @@
                 body.classList.toggle("dark-mode");
             }
         });
+
 
 
         //NAVBAR

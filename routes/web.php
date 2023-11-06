@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\TechnewsController as TechnewsController;
 use App\Models\Journal;
+use App\Models\News;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +23,17 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function (){
     return view('blogs', ['journals' => Journal::getAllJournals()]);
 })->name('home');
+
+
+
+
+
+Route::get('/technews', function (){
+    return view('technews', ['news' => News::getNewsString()]);
+})->name('technews');
+
+
+
 
 Route::view('/login', 'login')->name('login');
 

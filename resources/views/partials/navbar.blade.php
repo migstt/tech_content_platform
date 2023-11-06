@@ -35,14 +35,14 @@
                             class="text-black bg-gray-50 hover:bg-gray-400 hover:text-white dark:bg-gray-700
                             dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2
                             text-sm font-medium menu-button">Home</a>
-                        <a href="{{ route('authors') }}"
+                        {{-- <a href="{{ route('authors') }}"
                             class="text-black bg-gray-50 hover:bg-gray-400 hover:text-white dark:bg-gray-700
                             dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2
-                            text-sm font-medium menu-button">Authors</a>
-                        <a href="{{ route('authors') }}"
+                            text-sm font-medium menu-button">Authors</a> --}}
+                        <a href="{{ route('technews') }}"
                             class="text-black bg-gray-50 hover:bg-gray-400 hover:text-white dark:bg-gray-700
                             dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2
-                            text-sm font-medium menu-button">Tech News</a>
+                            text-sm font-medium menu-button">Latest Tech News</a>
                     </div>
                 </div>
             </div>
