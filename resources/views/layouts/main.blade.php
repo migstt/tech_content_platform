@@ -9,12 +9,14 @@
 
     <style>
         #navbar,
+        #body,
         .journal-div,
         .menu-button,
         .blogs-section,
-        #body {
+        .journal-info {
             transition: 0.5s;
         }
+
         .dark-mode {
             background-color: rgb(31 41 55);
         }

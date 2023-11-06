@@ -10,11 +10,12 @@
                 </a>
                 <div class="p-3 flex flex-col h-60 max-h-60">
                     <a href="/journal/{{ $journal->id }}">
-                        <h6 class="mb-2 text-1xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                        <h6 class="mb-2 text-1xl font-semibold tracking-tight text-gray-900 dark:text-white
+                         journal-info">
                             {{ $journal->title }}
                         </h6>
                     </a>
-                    <p class="text-sm font-normal text-gray-500 dark:text-white mt-auto">
+                    <p class="text-sm font-normal text-gray-500 dark:text-white mt-auto journal-info">
                         {{ $journal->author }} <br>
                         {{ date('d M Y', strtotime($journal->created_at)) }}
                     </p>
