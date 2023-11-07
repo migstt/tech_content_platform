@@ -32,16 +32,16 @@
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <a href="{{ route('home') }}"
-                            class="text-black bg-gray-50 hover:bg-gray-400 hover:text-white dark:bg-gray-700
-                            dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2
+                            class="text-black bg-gray-50 dark:bg-gray-700
+                            dark:text-white rounded-md px-3 py-2
                             text-sm font-medium menu-button">Home</a>
                         {{-- <a href="{{ route('authors') }}"
                             class="text-black bg-gray-50 hover:bg-gray-400 hover:text-white dark:bg-gray-700
                             dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2
                             text-sm font-medium menu-button">Authors</a> --}}
                         <a href="{{ route('technews') }}"
-                            class="text-black bg-gray-50 hover:bg-gray-400 hover:text-white dark:bg-gray-700
-                            dark:hover:bg-gray-600 dark:text-white dark:hover:text-black rounded-md px-3 py-2
+                            class="text-black bg-gray-50 dark:bg-gray-700
+                            dark:text-white rounded-md px-3 py-2
                             text-sm font-medium menu-button">Latest Tech News</a>
                     </div>
                 </div>
