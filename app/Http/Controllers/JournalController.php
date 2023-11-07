@@ -14,22 +14,10 @@ class JournalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public static function getAllJournal()
     {
-        //
+        return Journal::getAllJournal();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -46,9 +34,6 @@ class JournalController extends Controller
         return $markdowned;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function showSingleJournal($journalId)
     {
 
@@ -59,29 +44,5 @@ class JournalController extends Controller
         $parsedContents = $parsedown->text($markdownContents);
 
         return view('view-journal', ['parsedContents' => $parsedContents, 'journal' => $journal]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */ 
-    public function edit(Journal $journal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateJournalRequest $request, Journal $journal)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Journal $journal)
-    {
-        //
     }
 }

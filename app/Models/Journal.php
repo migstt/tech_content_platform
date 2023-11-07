@@ -20,7 +20,7 @@ class Journal extends Model
         ]);
     }
 
-    public static function getAllJournals()
+    public static function getAllJournal()
     {
         return self::orderBy('updated_at', 'DESC')->paginate(10);
     }
