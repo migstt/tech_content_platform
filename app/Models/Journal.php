@@ -21,10 +21,12 @@ class Journal extends Model
                 'author' => auth()->user()->name,
         ]);
     }
+    
     public static function getSingleJournal($id)
     {
         return self::find($id);
     }
+
     public static function getAllJournal()
     {
         return self::orderBy('updated_at', 'DESC')->paginate(10);
