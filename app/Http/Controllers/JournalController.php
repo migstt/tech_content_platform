@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateJournalRequest;
 use App\Http\Requests\StoreJournalRequest;
 use App\Http\Requests\UpdateJournalRequest;
 use Illuminate\Http\Request;
 use App\Models\Journal;
 use Illuminate\Support\Str;
-use Parsedown;
 
 class JournalController extends Controller
 {
@@ -18,31 +18,21 @@ class JournalController extends Controller
     {
         return Journal::getAllJournal();
     }
-    public function store(Request $request)
+    public function store(CreateJournalRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string',
-            'contents' => 'required|string',
-        ]);
         Journal::createNewJournal($request->title, $request->contents);
-        return redirect()->route('home')->with('success', 'Journal entry created successfully');
+        return redirect()->route('home');
     }
 
     public function transformMarkdown()
     {
-        $markdowned = Str::markdown(Journal::getAllJournals());
-        return $markdowned;
+        return Str::markdown(Journal::getAllJournals());
     }
 
-    public function showSingleJournal($journalId)
+    public function getParsedJournal($id)
     {
-
-        $journal = Journal::find($journalId);
-        $markdownContents = $journal->contents;
-        $parsedown = new Parsedown();
-
-        $parsedContents = $parsedown->text($markdownContents);
-
-        return view('view-journal', ['parsedContents' => $parsedContents, 'journal' => $journal]);
+        $journal = Journal::getSingleJournal($id);
+        $parsedJournal = Journal::journalContentParseToMarkdown($journal);
+        return view('view-journal', ['parsedContents' => $parsedJournal, 'journal' => $journal]);
     }
 }
