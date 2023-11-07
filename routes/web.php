@@ -26,11 +26,11 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/auth/google-callback', 'handleGoogleCallback');
 });
 
-
-// ROUTE FOR HOME PAGE
-Route::get('/', function (){
-    return view('blogs', ['journals' => Journal::getAllJournals()]);
-})->name('home');
+Route::controller(JournalController::class)->group(function () {
+    Route::view('/', 'blogs', ['journals' => JournalController::getAllJournal()])->name('home');
+    Route::post('/createjournal', 'store')->name('savejournal');
+    Route::get('/journal/{id}', 'showSingleJournal');
+});
 
 // ROUTE FOR TECH NEWS PAGE
 Route::get('/technews', function (){
@@ -48,9 +48,4 @@ Route::get('/authors', function (){
     return view('authors', ['curUser' => Auth::user(), 'authors' => User::getAllUsers()]);
 })->name('authors');
 
-// ROUTE FOR SAVING JOURNAL ENTRY IN THE DATABASE
-Route::post('/createjournal', [JournalController::class, 'store'])->name('savejournal');
-
-// ROUTE FOR DISPLAYING A SINGLE JOURNAL
-Route::get('/journal/{id}', [JournalController::class, 'showSingleJournal']);
 
