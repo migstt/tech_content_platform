@@ -20,34 +20,37 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function (){
-    return view('blogs', ['journals' => Journal::getAllJournals()]);
-})->name('home');
-
-
-
-
-
-Route::get('/technews', function (){
-    return view('technews', ['news' => News::getNewsString()]);
-})->name('technews');
-
-
-
-
-Route::view('/login', 'login')->name('login');
-
-Route::view('/create', 'create-journal')->name('create');
-
-Route::get('/authors', function (){
-    return view('authors', ['curUser' => Auth::user(), 'authors' => User::getAllUsers()]);
-})->name('authors');
-
-Route::post('/createjournal', [JournalController::class, 'store'])->name('savejournal');
-
-Route::get('/journal/{id}', [JournalController::class, 'showSingleJournal']);
-
+// GOOGLE SIGN IN AND AUTHENTICATION ROUTE
 Route::controller(LoginController::class)->group(function () {
     Route::get('/auth/google', 'redirectToGoogle')->name('google.auth');
     Route::get('/auth/google-callback', 'handleGoogleCallback');
 });
+
+
+// ROUTE FOR HOME PAGE
+Route::get('/', function (){
+    return view('blogs', ['journals' => Journal::getAllJournals()]);
+})->name('home');
+
+// ROUTE FOR TECH NEWS PAGE
+Route::get('/technews', function (){
+    return view('technews', ['news' => News::getNewsString()]);
+})->name('technews');
+
+// ROUTE FOR CREATE JOURNAL PAGE
+Route::view('/create', 'create-journal')->name('create');
+
+// ROUTE FOR CREATE LOGIN PAGE
+Route::view('/login', 'login')->name('login');
+
+// ROUTE FOR AUTHORS LOGIN PAGE
+Route::get('/authors', function (){
+    return view('authors', ['curUser' => Auth::user(), 'authors' => User::getAllUsers()]);
+})->name('authors');
+
+// ROUTE FOR SAVING JOURNAL ENTRY IN THE DATABASE
+Route::post('/createjournal', [JournalController::class, 'store'])->name('savejournal');
+
+// ROUTE FOR DISPLAYING A SINGLE JOURNAL
+Route::get('/journal/{id}', [JournalController::class, 'showSingleJournal']);
+
