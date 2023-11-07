@@ -58,7 +58,7 @@ class UnitTest extends TestCase
         $response->assertViewIs('blogs');
     }
 
-    function test_route_returns_authors_view()
+    public function test_route_returns_authors_view()
     {
         $response = $this->get('/authors');
         $response->assertViewHas('authors');
