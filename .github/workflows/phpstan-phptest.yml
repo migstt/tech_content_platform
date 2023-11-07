@@ -34,7 +34,8 @@ jobs:
     # needs: phpstan-analyze
       
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v3
     - name: Copy .env.testing
       run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
     - name: Validate composer.json and composer.lock
