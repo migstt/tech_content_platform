@@ -30,9 +30,10 @@ class Journal extends Model
 
     public static function getAllJournal()
     {
-        if (! App::runningInConsole()) { 
-            return self::orderBy('updated_at', 'DESC')->paginate(10);
-        }
+        // if (! App::runningInConsole()) { 
+        //     return self::orderBy('updated_at', 'DESC')->paginate(10);
+        // }
+        return self::orderBy('updated_at', 'DESC')->paginate(10);
     }
 
     public static function journalContentParseToMarkdown($journal)
