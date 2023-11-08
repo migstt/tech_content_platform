@@ -22,7 +22,7 @@ jobs:
         php_version: "8.1"
         version: "2.5.8"
     
-    - name: PHPStan Static Analysis
+    - name: Run PHPStan Static Code Analysis
       uses: php-actions/phpstan@v3
       with:
         path: app/ config/ database/ public/ routes/web.php tests/ resources/
@@ -36,7 +36,7 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-    - name: Copy .env.testing
+    - name: Copy .env.testing to .env
       run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
