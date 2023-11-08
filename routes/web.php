@@ -26,8 +26,9 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/auth/google-callback', 'handleGoogleCallback');
 });
 
+Route::view('/', 'blogs', ['journals' => JournalController::getAllJournal()])->name('home');
+
 Route::controller(JournalController::class)->group(function () {
-    Route::view('/', 'blogs', ['journals' => JournalController::getAllJournal()])->name('home');
     Route::post('/createjournal', 'store')->name('savejournal');
     Route::get('/journal/{id}', 'getParsedJournal');
 });
