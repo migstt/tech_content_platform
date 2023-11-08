@@ -13,10 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: php-actions/composer@v6
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Install Composer Dependencies
+      uses: php-actions/composer@v6
+      with:
+        php_version: "8.1"
+        version: "2.5.8"
     
-    - name: PHPStan Static Analysis
+    - name: Run PHPStan Static Code Analysis
       uses: php-actions/phpstan@v3
       with:
         path: app/ config/ database/ public/ routes/web.php tests/ resources/
@@ -28,8 +34,9 @@ jobs:
     # needs: phpstan-analyze
       
     steps:
-    - uses: actions/checkout@v3
-    - name: Copy .env.testing
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Copy .env.testing to .env
       run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
