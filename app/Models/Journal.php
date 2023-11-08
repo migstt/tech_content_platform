@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 use Parsedown;
 
 class Journal extends Model
@@ -30,9 +29,6 @@ class Journal extends Model
 
     public static function getAllJournal()
     {
-        // if (! App::runningInConsole()) { 
-        //     return self::orderBy('updated_at', 'DESC')->paginate(10);
-        // }
         return self::orderBy('updated_at', 'DESC')->paginate(10);
     }
 

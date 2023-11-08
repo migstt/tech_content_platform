@@ -16,7 +16,7 @@ class JournalController extends Controller
      */
     public static function getAllJournal()
     {
-        return Journal::getAllJournal();
+        return view('blogs', ["journals" => Journal::getAllJournal()]);
     }
     public function store(CreateJournalRequest $request)
     {
