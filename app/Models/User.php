@@ -53,6 +53,6 @@ class User extends Authenticatable
     }
     public static function getAllUsers()
     {
-        return self::orderBy('updated_at', 'DESC')->paginate(10);
+        return self::orderBy('updated_at', 'DESC')->take(5)->get();
     }
 }

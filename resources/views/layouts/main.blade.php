@@ -10,11 +10,11 @@
     <style>
         #navbar,
         #body,
-        .journal-div,
+        .delay-tran,
         .menu-button,
         .blogs-section,
         .journal-info,
-        .hashtag-span {
+        .hashtag-span{
             transition: 0.5s;
         }
 
