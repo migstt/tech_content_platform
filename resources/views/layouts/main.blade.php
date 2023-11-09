@@ -6,11 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+
+    <script src="/resources/js/app.js"></script>
 
     <style>
         #navbar,
         #body,
-        .journal-div,
+        .delay-tran,
         .menu-button,
         .blogs-section,
         .journal-info,
@@ -21,13 +24,20 @@
         .dark-mode {
             background-color: rgb(31 41 55);
         }
+
+        .pre-scrollable {
+            overflow-y: auto;
+            /* Add vertical scrollbar if the content exceeds max height */
+            white-space: pre-line;
+            /* Preserve line breaks in preformatted text */
+        }
     </style>
 
 </head>
 
 <body class="blogs-section bg-white">
     @include('partials.navbar')
-    <div class="container mx-auto justify-center items-center">
+    <div class="container mx-auto justify-center items-center min-h-screen">
         @yield('content')
     </div>
     @include('partials.footer')

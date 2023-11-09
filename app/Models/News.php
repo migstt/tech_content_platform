@@ -24,4 +24,9 @@ class News extends Model
     {
         return self::all();
     }
+
+    public static function truncateNewsTable()
+    {
+        self::table('weekly_news')->truncate();
+    }
 }

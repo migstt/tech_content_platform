@@ -18,7 +18,7 @@ class UnitTest extends TestCase
     public function test_should_return_users_ordered_by_updated_at_descending()
     {
         // Arrange
-        $expectedUsers = User::orderBy('updated_at', 'DESC')->paginate(10);
+        $expectedUsers = User::orderBy('updated_at', 'DESC')->take(5)->get();
 
         // Act
         $actualUsers = User::getAllUsers();

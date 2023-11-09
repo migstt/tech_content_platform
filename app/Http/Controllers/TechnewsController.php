@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use NewsdataIO\NewsdataApi;
 
 class TechnewsController extends Controller
