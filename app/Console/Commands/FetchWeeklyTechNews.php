@@ -27,6 +27,8 @@ class FetchWeeklyTechNews extends Command
      */
     public function handle()
     {
+        News::truncateNewsTable();
+        
         $newsJson = TechnewsController::getWeeklyTechNews();
 
         $newsString = json_encode($newsJson);
