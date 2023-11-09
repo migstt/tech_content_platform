@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +27,6 @@ class News extends Model
 
     public static function truncateNewsTable()
     {
-        DB::table('weekly_news')->truncate();
+        self::table('weekly_news')->truncate();
     }
 }
