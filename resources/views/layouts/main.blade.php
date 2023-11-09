@@ -24,10 +24,13 @@
         .dark-mode {
             background-color: rgb(31 41 55);
         }
+
         .pre-scrollable {
-    overflow-y: auto; /* Add vertical scrollbar if the content exceeds max height */
-    white-space: pre-line; /* Preserve line breaks in preformatted text */
-}
+            overflow-y: auto;
+            /* Add vertical scrollbar if the content exceeds max height */
+            white-space: pre-line;
+            /* Preserve line breaks in preformatted text */
+        }
     </style>
 
 </head>
