@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+
+    <script src="/resources/js/app.js"></script>
 
     <style>
         #navbar,
@@ -14,13 +17,17 @@
         .menu-button,
         .blogs-section,
         .journal-info,
-        .hashtag-span{
+        .hashtag-span {
             transition: 0.5s;
         }
 
         .dark-mode {
             background-color: rgb(31 41 55);
         }
+        .pre-scrollable {
+    overflow-y: auto; /* Add vertical scrollbar if the content exceeds max height */
+    white-space: pre-line; /* Preserve line breaks in preformatted text */
+}
     </style>
 
 </head>

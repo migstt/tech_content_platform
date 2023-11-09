@@ -40,7 +40,7 @@
                     </a> --}}
                 </div>
                 <div class="flow-root">
-                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700 list-none">
                         @foreach ($authors as $author)
                         <li class="py-3 sm:py-4">
                             <div class="flex items-center space-x-4">
