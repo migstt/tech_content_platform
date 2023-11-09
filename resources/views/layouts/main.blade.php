@@ -27,7 +27,7 @@
 
 <body class="blogs-section bg-white">
     @include('partials.navbar')
-    <div class="container mx-auto justify-center items-center">
+    <div class="container mx-auto justify-center items-center min-h-screen">
         @yield('content')
     </div>
     @include('partials.footer')
