@@ -14,11 +14,15 @@ class JournalController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public static function returnCreateJournalView()
+    {
+         return view('create-journal');
+    }
     public static function getAllJournal()
     {
         return view('blogs', ["journals" => Journal::getAllJournal()]);
     }
-    public function store(CreateJournalRequest $request)
+    public function storeJournal(CreateJournalRequest $request)
     {
         Journal::createNewJournal($request->title, $request->contents);
         return redirect()->route('home');
