@@ -8,8 +8,13 @@
         {{-- <pre class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400 pre-scrollable list-inside">
             {!! \Illuminate\Support\Str::of($parsedContents)->markdown() !!}
         </pre> --}}
-        <pre class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400 pre-scrollable list-inside">
+        {{-- <pre class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400 pre-scrollable list-inside leading-5
+        prose prose-blockqoute">
             {!! $parsedContents !!}
-        </pre>
+        </pre> --}}
+        <div class="text-base font-normal text-gray-500 dark:text-gray-400 pre-scrollable leading-6
+        prose prose-blockqoute custom-content">
+            {!! $parsedContents !!}
+        </div>
     </div>
 @endsection

@@ -27,10 +27,18 @@
 
         .pre-scrollable {
             overflow-y: auto;
-            /* Add vertical scrollbar if the content exceeds max height */
-            white-space: pre-line;
-            /* Preserve line breaks in preformatted text */
         }
+
+        /* .custom-content p,
+        ul,
+        ol,
+        h1,
+        h2,
+        li {
+            margin: 0%;
+            margin-bottom: 0%;
+        } */
+        
     </style>
 
 </head>
