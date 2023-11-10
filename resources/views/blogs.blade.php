@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
-    <div class="grid grid-cols-1 px-12 md:grid-cols-4 mt-20 mb-20 justify-center">
-        <div class="md:col-span-3 grid grid-cols-2 mx-10">
+    <div class="grid grid-cols-1 px-auto sm:px-12 md:grid-cols-4 mt-20 mb-20 justify-center">
+        <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 mx-10">
             @forelse($journals as $journal)
             <div class="ml-5 bg-gray-50 border border-gray-200 rounded-lg shadow
             dark:bg-gray-700 dark:border-gray-700 mt-5 relative self-center delay-tran">
@@ -10,9 +10,9 @@
                     src="https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
                     alt="Cat Image" />
                 </a>
-                <div class="p-3 flex flex-col h-30">
+                <div class="p-3 flex flex-col h-40">
                     <a href="/journal/{{ $journal->id }}">
-                        <h6 class="break-word mb-2 text-xl font-semibold tracking-tight
+                        <h6 class="break-words mb-2 text-xl font-semibold tracking-tight
                         text-gray-900 dark:text-white journal-info">
                             {{ $journal->title }}
                         </h6>
