@@ -10,9 +10,9 @@
                     src="https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
                     alt="Cat Image" />
                 </a>
-                <div class="p-3 flex flex-col h-40">
+                <div class="p-3 flex flex-col h-30">
                     <a href="/journal/{{ $journal->id }}">
-                        <h6 class="break-all mb-2 text-2xl font-semibold tracking-tight
+                        <h6 class="break-word mb-2 text-xl font-semibold tracking-tight
                         text-gray-900 dark:text-white journal-info">
                             {{ $journal->title }}
                         </h6>
