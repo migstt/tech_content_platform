@@ -28,17 +28,6 @@
         .pre-scrollable {
             overflow-y: auto;
         }
-
-        /* .custom-content p,
-        ul,
-        ol,
-        h1,
-        h2,
-        li {
-            margin: 0%;
-            margin-bottom: 0%;
-        } */
-        
     </style>
 
 </head>
@@ -49,8 +38,6 @@
         @yield('content')
     </div>
     @include('partials.footer')
-
-
 
     <script>
         const userMenuButton = document.getElementById("user-menu-button");
