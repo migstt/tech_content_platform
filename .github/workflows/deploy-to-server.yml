@@ -23,9 +23,9 @@ jobs:
           key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           port: ${{ vars.PORT_SERVER }}
           script: | 
-            cd mtrinidad.ronins.site
+            cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
             eval "$(ssh-agent)"
-            ssh-add ~/.ssh/mtrininidad-key
-            git pull origin production
+            ssh-add ${{ secrets.SSH_P_KEY_PATH }}
+            git pull origin ${{ vars.SOURCE_BRANCH_PULL }}
             /usr/local/php82/bin/php composer.phar install --no-dev
             /usr/local/php82/bin/php artisan migrate --force
