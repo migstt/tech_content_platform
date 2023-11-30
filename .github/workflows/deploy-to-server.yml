@@ -3,9 +3,12 @@ run-name: Deploy Changes to Ronins Server
 #ola update
 #hello
 on: 
-  push:
-    branches:
-      - production
+  # push:
+  #   branches:
+  #     - production
+  release:
+    types:
+      - created
 jobs:
 
   deploy-to-ronins:
