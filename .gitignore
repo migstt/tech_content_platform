@@ -6,3 +6,4 @@
 /public/storage
 /vendor
 .phpunit.result.cache
+/public/miguel_blog
