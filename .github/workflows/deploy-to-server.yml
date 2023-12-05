@@ -40,3 +40,5 @@ jobs:
           script: |
             cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
             bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
+            /usr/local/php82/bin/php composer.phar install --no-dev
+            /usr/local/php82/bin/php artisan migrate --force
