@@ -1,7 +1,6 @@
 name: Deploy to Production Server
 run-name: Deploy Changes to Ronins Server
-#ola update
-#hello
+# tag based release test
 on: 
   # push:
   #   branches:
@@ -25,10 +24,17 @@ jobs:
           username: ${{ secrets.PROD_SSH_USER }}
           key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           port: ${{ vars.PORT_SERVER }}
-          script: | 
-            cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
-            eval "$(ssh-agent)"
-            ssh-add ${{ secrets.SSH_P_KEY_PATH }}
-            git pull origin ${{ vars.SOURCE_BRANCH_PULL }}
-            /usr/local/php82/bin/php composer.phar install --no-dev
-            /usr/local/php82/bin/php artisan migrate --force
+
+          # BRANCH BASED DEPLOYMENT
+          # script: | 
+          #   cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
+          #   eval "$(ssh-agent)"
+          #   ssh-add ${{ secrets.SSH_P_KEY_PATH }}
+          #   git pull origin ${{ vars.SOURCE_BRANCH_PULL }}
+          #   /usr/local/php82/bin/php composer.phar install --no-dev
+          #   /usr/local/php82/bin/php artisan migrate --force
+
+          # TAG BASED DEPLOYMENT
+          # Fetches and Checkouts the latest tag from remote repo
+          run: |
+            ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
