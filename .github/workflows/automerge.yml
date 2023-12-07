@@ -27,7 +27,7 @@ jobs:
     steps:
     - name: Merge with production
       run: |
-        git clone ${{env.MY_REPO}} -b ${{env.MY_BRANCH}} tmp
+        git clone https://migoy99:${{secrets.GH_TOKEN}}@github.com/migoy99/journal_app_laravel.git -b ${{env.MY_BRANCH}} tmp
         cd tmp
         git config user.name "Automerge Bot"
         git config user.email "bot@example.com"
