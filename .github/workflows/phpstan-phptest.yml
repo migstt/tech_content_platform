@@ -74,6 +74,8 @@ jobs:
         DB_DATABASE: database/database.sqlite
       run: php artisan test
 
+
+  # If PHPSTAN and PHPUNIT succeeds, branch "develop" will be merged to branch "production"
   merge-develop-to-prod: 
     needs: [phpstan-analyze, phpunit-test]
     runs-on: ubuntu-latest
@@ -84,4 +86,4 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           source_ref: "develop"
           target_branch: "production"
-          commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
+          commit_message_template: "[Automated] Merged {source_ref} into {target_branch}"
