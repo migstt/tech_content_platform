@@ -1,8 +1,5 @@
 name: Deploy to Production Server
 run-name: Deploy Changes to Ronins Server
-# tag based release test
-# v1.0.4
-# Test merge test
 on: 
   # push:
   #   branches:
