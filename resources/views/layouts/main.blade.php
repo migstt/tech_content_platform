@@ -28,6 +28,10 @@
         .pre-scrollable {
             overflow-y: auto;
         }
+
+        .toastui-editor-mode-switch {
+            display: none !important;
+        }
     </style>
 
 </head>
@@ -117,6 +121,14 @@
             navbar.style.top = `${amount}px`
             lastScrollTop = scrollTop;
         });
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     // HIDE DIV FOR THE MARKDOWN AND WYSIWYG TAB
+        //     var modeSwitch = document.querySelector('.toastui-editor-mode-switch');
+        //     if (modeSwitch) {
+        //         modeSwitch.style.display = 'none';
+        //     }
+        // });
     </script>
 </body>
 
