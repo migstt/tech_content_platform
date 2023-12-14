@@ -27,7 +27,9 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::controller(JournalController::class)->group(function () {
+    // JOURNALS, AUTHORS AND NEWS
     Route::get('/', 'getAllJournal')->name('home');
+    
     Route::get('/create', 'returnCreateJournalView')->name('create');
     Route::get('/journal/{id}', 'getParsedJournal');
     Route::post('/createjournal', 'storeJournal')->name('savejournal');

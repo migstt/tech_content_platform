@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateJournalRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Journal;
+use App\Models\News;
 use Illuminate\Support\Str;
 
 class JournalController extends Controller
@@ -21,7 +22,7 @@ class JournalController extends Controller
     }
     public static function getAllJournal()
     {
-        return view('blogs', ["journals" => Journal::getAllJournal(), "authors" => User::getAllUsers()]);
+        return view('blogs', ["journals" => Journal::getAllJournal(), "authors" => User::getAllUsers(), "news" => News::getNewsString()]);
     }
     public function storeJournal(CreateJournalRequest $request)
     {
@@ -38,6 +39,6 @@ class JournalController extends Controller
     {
         $journal = Journal::getSingleJournal($id);
         $parsedJournal = Journal::journalContentParseToMarkdown($journal);
-        return view('view-journal', ['parsedContents' => $parsedJournal, 'journal' => $journal]);
+        return view('view-journal', ['parsedContents' => $parsedJournal, 'journal' => $journal, "journals" => Journal::getAllJournal()]);
     }
 }
