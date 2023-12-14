@@ -1,4 +1,4 @@
-name: Merge develop with prod after test
+name: Merge after test
 on:
   workflow_run:
     workflows: ["PHPStan Analyze && PHPUnit Test"]

@@ -49,7 +49,7 @@
 
             {{-- DIV FOR TOGGLE MODE, PROFILE DROPDOWN OR SIGN UP BUTTON --}}
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button" id="theme-toggle"
+                {{-- <button type="button" id="theme-toggle"
                     class="mr-3 relative rounded-full bg-white dark:bg-gray-800 p-1 text-gray-400 hover:text-black
                     dark:hover:text-white">
                     <span class="absolute -inset-1.5"></span>
@@ -72,7 +72,7 @@
                             0-1.414-1.414l-1.414 1.414a1 1 0 0 0 .707 1.707Z">
                         </path>
                     </svg>
-                </button>
+                </button> --}}
 
                 {{-- PROFILE PICTURE DROPDOWN OR GOOGLE SIGNUN --}}
                 <div class="relative ml-3 flex items-center">
@@ -83,7 +83,7 @@
                                 class="mr-5 mt-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4
                                     focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5
                                     text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mb-2">
-                                Publish a Journal
+                                Publish something
                             </button>
                         </a>
                         <button type="button"
