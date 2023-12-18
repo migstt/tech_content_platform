@@ -22,11 +22,18 @@ class JournalController extends Controller
     }
     public static function getAllJournal()
     {
-        return view('blogs', ["journals" => Journal::getAllJournal(), "authors" => User::getAllUsers(), "news" => News::getNewsString()]);
+        return view('blogs', [
+            "journals" => Journal::getAllJournal(),
+            "authors" => User::getAllUsers(),
+            "news" => News::getNewsString(),
+        ]);
     }
     public function storeJournal(CreateJournalRequest $request)
     {
-        Journal::createNewJournal($request->title, $request->contents);
+        Journal::createNewJournal(
+            $request->title,
+            $request->contents,
+        );
         return redirect()->route('home');
     }
 
@@ -35,10 +42,23 @@ class JournalController extends Controller
         return Str::markdown(Journal::getAllJournals());
     }
 
-    public function getParsedJournal($id)
+    public static function getParsedJournal($id)
     {
         $journal = Journal::getSingleJournal($id);
         $parsedJournal = Journal::journalContentParseToMarkdown($journal);
-        return view('view-journal', ['parsedContents' => $parsedJournal, 'journal' => $journal, "journals" => Journal::getAllJournal()]);
+        return view('view-journal', [
+            "parsedContents" => $parsedJournal,
+            "journal" => $journal,
+            "journals" => Journal::getAllJournal()
+        ]);
+    }
+    public static function parseSingleJournal($id)
+    {
+        $journal = Journal::getSingleJournal($id);
+        $markdownContent = Journal::journalContentParseToMarkdown($journal);
+    
+        // Limit
+        $lines = explode("\n", $markdownContent);
+        return implode("\n", array_slice($lines, 0, 1));
     }
 }

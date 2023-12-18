@@ -29,7 +29,7 @@ class Journal extends Model
 
     public static function getAllJournal()
     {
-        return self::orderBy('updated_at', 'DESC')->paginate(5);
+        return self::orderBy('updated_at', 'DESC')->paginate(4);
     }
 
     public static function journalContentParseToMarkdown($journal)
