@@ -49,10 +49,13 @@
     <aside aria-label="Related articles" class="py-8 lg:py-24 bg-gray-0 dark:bg-gray-800 blogs-section">
         <div class="px-4 mx-auto max-w-screen-xl">
             <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Related articles</h2>
-            <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
                 @forelse($journals as $journ)
                     @if ($journ->id != $journal->id)
                         <article class="max-w-xs">
+
+                        {{-- CENTERED ARTICLES --}}
+                        {{-- <article class="max-w-xs mx-auto"> --}}
                             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
                                 <a href="/journal/{{ $journ->id }}">{{ $journ->title }}</a>
                             </h2>
