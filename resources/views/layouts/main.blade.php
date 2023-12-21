@@ -11,7 +11,6 @@
     <script src="/resources/js/app.js"></script>
 
     <style>
-        #navbar,
         #body,
         .delay-tran,
         .menu-button,
@@ -37,7 +36,7 @@
 </head>
 
 <body class="blogs-section bg-white">
-    @include('partials.navbar')
+    @include('partials.navigation')
     <div class="container mx-auto justify-center items-center min-h-screen">
         @yield('content')
     </div>
@@ -129,6 +128,26 @@
         //         modeSwitch.style.display = 'none';
         //     }
         // });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.tablecontents a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetSlug = this.getAttribute('href').substring(1);
+                const targetElement = document.querySelector('a[name="' + targetSlug + '"]');
+
+                if (targetElement) {
+                    const offset = targetElement.getBoundingClientRect().top + window.scrollY;
+                    
+                    window.scrollTo({
+                        top: offset - 20, // Adjust as needed
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
     </script>
 </body>
 
