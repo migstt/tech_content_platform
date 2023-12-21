@@ -1,5 +1,4 @@
-name: Merge after test
-# auto merge test
+name: Merge after PHPStan Analyze && PHPUnit Test
 on:
   workflow_run:
     workflows: ["PHPStan Analyze && PHPUnit Test"]
@@ -13,6 +12,6 @@ jobs:
       - uses: everlytic/branch-merge@1.1.2
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          source_ref: "develop"
-          target_branch: "production"
+          source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
+          target_branch: "${{ secrets.MERGE_WORKFLOW_TARGET_BRANCH }}"
           commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
