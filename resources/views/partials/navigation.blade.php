@@ -1,4 +1,4 @@
-<nav class="relative px-10 py-4 flex justify-between items-center bg-white border-solid">
+<nav class="relative px-10 py-4 flex justify-between items-center bg-white border-solid" id="navbar">
     <a class="text-3xl font-bold leading-none" href="#">
         <svg class="h-10" alt="logo" viewBox="0 0 10240 10240">
             <path xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
     </div>
     <ul
         class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6 list-none">
-        <li><a class="text-l text-gray-400 hover:text-gray-500" href="/">Homes</a></li>
+        <li><a class="text-l text-blue-600 font-bold hover:text-gray-500" href="/">Home</a></li>
         <li class="text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill"
                 viewBox="0 0 24 24">
@@ -25,16 +25,16 @@
             </svg>
         </li>
         <li>
-            <a class="text-l text-blue-600 font-bold" href="#">About Us</a>
+            <a class="text-l text-gray-400" href="#">About Me</a>
         </li>
-        <li class="text-gray-300">
+        {{-- <li class="text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill"
                 viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
             </svg>
         </li>
-        <li><a class="text-l text-gray-400 hover:text-gray-500" href="#">Services</a></li>
+        <li><a class="text-l text-gray-400 hover:text-gray-500" href="#">Services</a></li> --}}
     </ul>
     <a href="{{ route('google.auth') }}">
         <button id="user-menu-button" type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4
@@ -86,15 +86,6 @@
                 <li class="mb-1">
                     <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                         href="#">Services</a>
-                </li>
-                <li class="mb-1">
-                    <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                        href="#">Pricing</a>
-                </li>
-                <li class="mb-1">
-                    <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                        href="#">Contact</a>
-                </li>
             </ul>
         </div>
         <div class="mt-auto">
@@ -110,47 +101,15 @@
         </div>
     </nav>
 </div>
-
-
 <script>
-    // Burger menus
-    document.addEventListener('DOMContentLoaded', function() {
-        // open
-        const burger = document.querySelectorAll('.navbar-burger');
-        const menu = document.querySelectorAll('.navbar-menu');
-
-        if (burger.length && menu.length) {
-            for (var i = 0; i < burger.length; i++) {
-                burger[i].addEventListener('click', function() {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-60px";
         }
-
-        // close
-        const close = document.querySelectorAll('.navbar-close');
-        const backdrop = document.querySelectorAll('.navbar-backdrop');
-
-        if (close.length) {
-            for (var i = 0; i < close.length; i++) {
-                close[i].addEventListener('click', function() {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
-        }
-
-        if (backdrop.length) {
-            for (var i = 0; i < backdrop.length; i++) {
-                backdrop[i].addEventListener('click', function() {
-                    for (var j = 0; j < menu.length; j++) {
-                        menu[j].classList.toggle('hidden');
-                    }
-                });
-            }
-        }
-    });
+        prevScrollpos = currentScrollPos;
+    }
 </script>

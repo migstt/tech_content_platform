@@ -13,21 +13,24 @@
 </div> --}}
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-800 antialiased mt-10 blogs-section">
-    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
+        <!-- Article Content -->
         <article
             class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 lg:mb-6 not-format">
+                <!-- Author Info -->
                 <address class="flex items-center mb-6 not-italic">
                     <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                        <!-- Author Image -->
                         {{-- <img class="mr-4 w-16 h-16 rounded-full"
                             src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
                             alt="{!! $journal->author !!}"> --}}
                         <img class="mr-4 w-16 h-16 rounded-full" alt="{!! $journal->author !!}">
                         <div>
+                            <!-- Author Name -->
                             <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{!!
                                 $journal->author !!}</a>
-                            {{-- <p class="text-base text-gray-500 dark:text-gray-400">Graphic Designer, educator & CEO
-                                Flowbite</p> --}}
+                            <!-- Date -->
                             <p class="text-base text-gray-500 dark:text-gray-400">
                                 <time>
                                     {{ date('M Y', strtotime($journal->created_at)) }}
@@ -36,22 +39,23 @@
                         </div>
                     </div>
                 </address>
+                <!-- Article Title -->
                 <h1
                     class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
                     {!! $journal->title !!}</h1>
             </header>
+            <!-- Article Content -->
             <div
                 class="text-base font-normal text-gray-500 dark:text-gray-400 pre-scrollable leading-6 prose prose-blockqoute custom-content">
-                {{-- NOT WORKING ON CLICK BUT CORRECT DISPLAY --}}
-                {!! $parsedContents !!}
-
-                {{-- WORKING ON CLICK BUT WRONG DISPLAY--}}
-                {{-- {!! App\Http\Controllers\JournalController::generateIndex($journal->contents)['html'] !!} --}}
+                {!! $parsedJournalContentsv2 !!}
             </div>
         </article>
-        <div class="tablecontents">
-            <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">TABLE OF CONTENTS</h2>
-            {!! App\Http\Controllers\JournalController::generateIndex($journal->contents)['index'] !!}
+
+        <!-- Table of Contents -->
+        <div class="tablecontents sticky top-0 max-h-screen overflow-y-auto">
+            <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white mt-20">TABLE OF CONTENTS</h2>
+            {{-- {!! App\Http\Controllers\JournalController::generateIndexHTML($parsedJournalContents)['index'] !!} --}}
+            {!! $tableOfContentsv2 !!}
         </div>
     </div>
 </main>
@@ -85,4 +89,50 @@
         </div>
     </div>
 </aside>
+
+<style>
+    .toc-item a {
+        color: #333;
+        transition: color 0.3s ease;
+        margin-right: 5%;
+        padding: 1%;
+    }
+
+    .toc-item.active-toc-item a {
+        color: #666;
+        background-color: #f0f0f0;
+        transition: background-color 0.3s ease;
+    }
+
+    .tablecontents {
+        max-height: 100vh;
+        /* Set the maximum height to 100% of the viewport height */
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tocItems = document.querySelectorAll('.toc-item');
+        var bufferZone = 300; // Adjust this value as needed
+
+        function highlightActiveSection() {
+            var scrollPosition = window.scrollY;
+
+            tocItems.forEach(function (item) {
+                var targetId = item.getAttribute('data-target');
+                var targetElement = document.getElementById(targetId);
+
+                if (targetElement.offsetTop - bufferZone <= scrollPosition &&
+                    (targetElement.offsetTop + targetElement.offsetHeight + bufferZone) > scrollPosition) {
+                    item.classList.add('active-toc-item');
+                } else {
+                    item.classList.remove('active-toc-item');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+        highlightActiveSection();
+    });
+</script>
 @endsection
