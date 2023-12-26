@@ -11,6 +11,21 @@
     <script src="/resources/js/app.js"></script>
 
     <style>
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: top 0.3s;
+            z-index: 1000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         #body,
         .delay-tran,
         .menu-button,
@@ -31,6 +46,8 @@
         .toastui-editor-mode-switch {
             display: none !important;
         }
+
+        
     </style>
 
 </head>
@@ -55,7 +72,6 @@
             }
         }
 
-
         // USER MENU MOBILE
         userMenuButton.addEventListener("click", toggleUserMenu);
         const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
@@ -68,9 +84,7 @@
                 mobileMenu.style.display = "block";
             }
         }
-
         mobileMenuButton.addEventListener("click", toggleMobileMenu);
-
 
         // TOGGLE DARK OR LIGHT MODE
         const themeToggle = document.getElementById("theme-toggle");
@@ -92,43 +106,7 @@
             }
         });
 
-
-
-        //NAVBAR
-        const navbar = document.getElementById("navbar");
-        let lastScrollTop = 0;
-        addEventListener("scroll", () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const distance = scrollTop - lastScrollTop;
-            const currentTop = parseInt(
-                getComputedStyle(navbar).top.split("px")
-            );
-
-            let amount = Math.max(
-                Math.min(
-                    currentTop +
-                    (distance < 0 ?
-                        Math.abs(distance) :
-                        -Math.abs(distance)
-                    ) * 40,
-                    0
-                ),
-                -80
-            );
-
-            console.log(amount, currentTop, Math.abs(distance));
-            navbar.style.top = `${amount}px`
-            lastScrollTop = scrollTop;
-        });
-
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     // HIDE DIV FOR THE MARKDOWN AND WYSIWYG TAB
-        //     var modeSwitch = document.querySelector('.toastui-editor-mode-switch');
-        //     if (modeSwitch) {
-        //         modeSwitch.style.display = 'none';
-        //     }
-        // });
-
+        // SMOOTH SCROLLING AND REDIRECT ON TABLE OF CONTENTS SECTION CLICK
         document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.tablecontents a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -141,13 +119,36 @@
                     const offset = targetElement.getBoundingClientRect().top + window.scrollY;
                     
                     window.scrollTo({
-                        top: offset - 20, // Adjust as needed
+                        top: offset - 20,
                         behavior: 'smooth'
                     });
                 }
             });
         });
-    });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var tocItems = document.querySelectorAll('.toc-item');
+
+            function highlightActiveSection() {
+                var scrollPosition = window.scrollY;
+
+                tocItems.forEach(function (item) {
+                    var targetId = item.getAttribute('data-target');
+                    var targetElement = document.getElementById(targetId);
+
+                    if (targetElement.offsetTop <= scrollPosition && (targetElement.offsetTop + targetElement.offsetHeight) > scrollPosition) {
+                        item.classList.add('active-toc-item');
+                    } else {
+                        item.classList.remove('active-toc-item');
+                    }
+                });
+            }
+            window.addEventListener('scroll', highlightActiveSection);
+            highlightActiveSection(); // Initial highlighting
+        });
+      
     </script>
 </body>
 

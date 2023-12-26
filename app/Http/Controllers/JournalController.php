@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Journal;
 use App\Models\News;
 use Illuminate\Support\Str;
+use Symfony\Component\ErrorHandler\ThrowableUtils;
 
 class JournalController extends Controller
 {
@@ -28,6 +29,7 @@ class JournalController extends Controller
             "news" => News::getNewsString(),
         ]);
     }
+
     public function storeJournal(CreateJournalRequest $request)
     {
         Journal::createNewJournal(
@@ -42,17 +44,6 @@ class JournalController extends Controller
         return Str::markdown(Journal::getAllJournals());
     }
 
-    public static function getParsedJournal($id)
-    {
-        $journal = Journal::getSingleJournal($id);
-        $parsedJournal = Journal::journalContentParseToMarkdown($journal);
-
-        return view('view-journal', [
-            "parsedContents" => $parsedJournal,
-            "journal" => $journal,
-            "journals" => Journal::getAllJournal(),
-        ]);
-    }
     public static function parseSingleJournal($id)
     {
         $journal = Journal::getSingleJournal($id);
@@ -63,29 +54,48 @@ class JournalController extends Controller
         return implode("\n", array_slice($lines, 0, 1));
     }
 
-    // FOR TABLE OF CONTENTS
-    public static function generateIndex($journalContents)
+    public static function getParsedJournal($id)
     {
+        $journal = Journal::getSingleJournal($id);
+        $parsedJournal = Journal::journalContentParseToMarkdown($journal);
 
-        preg_match_all('/^#{1,3}\s+(.*?)$/m', $journalContents, $matches);
+        // Generate index with IDs for headers
+        $indexResult = self::generateIndexHTML($parsedJournal);
+        $parsedJournalWithIDs = $indexResult['html'];
+        $tableOfContents = $indexResult['index'];
 
-        $index = "<ul class='max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400'>";
+        return view('view-journal', [
+            "parsedJournalContents" => $parsedJournal,
+            "journal" => $journal,
+            "journals" => Journal::getAllJournal(),
+            "parsedJournalContentsv2" => $parsedJournalWithIDs,
+            "tableOfContentsv2" => $tableOfContents,
+            "tableOfContents" => self::generateIndexHTML($tableOfContents),
+        ]);
+    }
 
+    // FOR TABLE OF CONTENTS with HTML TYPE HEADERS
+    public static function generateIndexHTML($journalContents)
+    {
+        preg_match_all('/<h[1-3][^>]*>(.*?)<\/h[1-6]>/i', $journalContents, $matches);
+    
+        $index = "<ul class='max-w-md space-y-2 text-gray-500 list-none list-inside dark:text-gray-400'>";
+    
         foreach ($matches[0] as $i => $match) {
-            $text = trim($matches[1][$i]);
+            $text = trim(strip_tags($matches[1][$i])); // Strip HTML tags from header text
             $slug = strtolower(str_replace("--", "-", preg_replace('/[^\da-z]/i', '-', $text)));
             $id = 'section-' . $slug;
+    
+            // Add id attribute to the corresponding header tag
+            $headerWithId = str_replace('<h', '<h2 id="' . $id . '"', $match);
+            $journalContents = str_replace($match, $headerWithId, $journalContents);
+    
+            $index .= '<li class="toc-item" data-target="' . $id . '"><a href="#' . $id . '">' . $text . '</a></li>';
 
-            // Add id attribute to the corresponding section
-            $anchor = '<a id="' . $id . '">' . $text . '</a>';
-            $journalContents = str_replace($match, $anchor, $journalContents);
-
-            $index .= '<li><a href="#' . $id . '">' . $text . '</a></li>';
         }
-
+    
         $index .= "</ul>";
-
+    
         return ["html" => $journalContents, "index" => $index];
-
     }
 }
