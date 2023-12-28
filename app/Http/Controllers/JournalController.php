@@ -79,7 +79,7 @@ class JournalController extends Controller
     {
         preg_match_all('/<h[1-3][^>]*>(.*?)<\/h[1-6]>/i', $journalContents, $matches);
     
-        $index = "<ul class='max-w-md space-y-2 text-gray-500 list-none list-inside dark:text-gray-400'>";
+        $index = "<ul class='max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400'>";
     
         foreach ($matches[0] as $i => $match) {
             $text = trim(strip_tags($matches[1][$i])); // Strip HTML tags from header text
