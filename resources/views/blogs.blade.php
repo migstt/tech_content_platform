@@ -35,8 +35,7 @@
                             class="block p-2 pl-0 pt-1 text-sm text-gray-600 max-h-16 overflow-hidden overflow-ellipsis truncate">
                             {!! App\Http\Controllers\JournalController::parseSingleJournal($journal->id) !!}
                         </p>
-                        {{-- <p
-                            class="">
+                        {{-- <p class="">
                             {{ App\Http\Controllers\JournalController::parseSingleJournal($journal->id) }}
                         </p> --}}
                     </div>
@@ -55,7 +54,7 @@
                 </div>
             </div>
 
-            
+
             @empty
             <p>There's nothing here...</p>
             @endforelse
@@ -87,30 +86,6 @@
             <div class="mt-8">
                 <div class="">
                     {{ $journals->links('pagination::tailwind') }}
-                    {{-- <a href="#"
-                        class="px-3 py-2 mx-1 font-medium text-gray-500 bg-white rounded-md cursor-not-allowed">
-                        Previous
-                    </a>
-
-                    <a href="#"
-                        class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white">
-                        1
-                    </a>
-
-                    <a href="#"
-                        class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white">
-                        2
-                    </a>
-
-                    <a href="#"
-                        class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white">
-                        3
-                    </a>
-
-                    <a href="#"
-                        class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white">
-                        Next
-                    </a> --}}
                 </div>
             </div>
         </div>
@@ -142,10 +117,10 @@
                 @if (isset($newsData['results']) && is_array($newsData['results']))
                 @foreach ($newsData['results'] as $new)
                 @if ($new['image_url'] != '')
-                <a href="{{ $new['link'] }}" class="rounded w-full flex flex-col md:flex-row mb-5">
+                <a href="{{ $new['link'] }}" class="rounded w-full flex flex-col md:flex-row mb-3">
                     <img src="{{ $new['image_url'] }}" class="block md:hidden lg:block rounded-md h- w-20 m-4 md:m-0" />
-                    <div class="bg-white rounded px-4 flex items-center">
-                        <p class="block p-2 pl-0 pt-1 text-sm text-gray-600 max-h-16 overflow-hidden overflow-ellipsis">
+                    <div class="bg-white rounded px-4 flex items-center w-full">
+                        <p class="block p-2 my-2 pl-0 pt-1 text-sm text-gray-600 max-h-16 overflow-hidden overflow-ellipsis">
                             {{ $new['title'] }}
                         </p>
                     </div>

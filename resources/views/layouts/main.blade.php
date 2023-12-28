@@ -15,10 +15,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: white;
+            /* background-color: #388E3C; */
             padding: 10px;
             border-bottom: 1px solid #ddd;
-            transition: top 0.3s;
+            transition: top 0.5s;
             z-index: 1000;
         }
 
@@ -46,13 +46,12 @@
         .toastui-editor-mode-switch {
             display: none !important;
         }
-
-        
+   
     </style>
 
 </head>
 
-<body class="blogs-section bg-white">
+<body class="blogs-section bg-gray-100">
     @include('partials.navigation')
     <div class="container mx-auto justify-center items-center min-h-screen">
         @yield('content')
