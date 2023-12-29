@@ -116,8 +116,11 @@
     </div>
     <!-- PREVIOUS AND NEXT ARTICLES -->
     <div class="flex items-center justify-center mt-10 lg:px-0 sm:px-6 px-4">
-        <div class="mx-10 w-full flex items-center justify-between border-t border-b border-green-200">
+        <div class="mx-10 w-full flex items-center justify-between border-t border-b border-gray-300">
             <div class="flex items-center pt-5 pb-5 text-gray-600 hover:text-green-700 cursor-pointer">
+                @if ($previousJournal == null)
+                <p class="text-2xl ml-3 font-medium leading-none nextprev"> </p>
+                @else
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.1665 4H12.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
                         stroke-linejoin="round" />
@@ -126,10 +129,18 @@
                     <path d="M1.1665 4.00002L4.49984 0.666687" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <p class="text-2xl ml-3 font-medium leading-none hover:font-bold nextprev">Previous</p>
+                <a class="text-2xl ml-3 font-medium leading-none nextprev no-underline" href="/journal/{{ $previousJournal->id }}">
+                    {{ $previousJournal->title }}
+                </a>
+                @endif
             </div>
-            <div class="flex items-center pt-5 pb-5 text-gray-600 hover:text-green-700 hover:font-bold cursor-pointer">
-                <p class="text-2xl font-medium leading-none mr-3 hover:font-bold nextprev">Next</p>
+            <div class="flex items-center pt-5 pb-5 text-gray-600 hover:text-green-700 cursor-pointer">
+                @if ($nextJournal == null)
+                <p class="text-2xl font-medium leading-none mr-3 nextprev"></p>
+                @else
+                <a class="text-2xl mr-3 font-medium leading-none nextprev no-underline" href="/journal/{{ $nextJournal->id }}">
+                    {{ $nextJournal->title }}
+                </a>
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.1665 4H12.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
                         stroke-linejoin="round" />
@@ -138,7 +149,7 @@
                     <path d="M9.5 0.666687L12.8333 4.00002" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-
+                @endif
             </div>
         </div>
     </div>
