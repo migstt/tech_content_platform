@@ -71,6 +71,8 @@ class JournalController extends Controller
             "parsedJournalContentsv2" => $parsedJournalWithIDs,
             "tableOfContentsv2" => $tableOfContents,
             "tableOfContents" => self::generateIndexHTML($tableOfContents),
+            "previousJournal" => Journal::getPreviousJournal($id),
+            "nextJournal" => Journal::getNextJournal($id),
         ]);
     }
 
