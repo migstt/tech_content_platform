@@ -26,7 +26,7 @@ class Journal extends Model
     {
         return self::find($id);
     }
-
+    
     public static function getAllJournal()
     {
         return self::orderBy('updated_at', 'DESC')->paginate(4);
@@ -39,9 +39,9 @@ class Journal extends Model
         return $parsedown->text($contents);
     }
 
-    public static function getNextJournal($journalId)
+    public static function getNextJournal($id)
     {
-        $journal = self::getSingleJournal($journalId);
+        $journal = self::getSingleJournal($id);
         $nextJournal = self::where('created_at', '>', $journal->created_at)
             ->orderBy('created_at', 'asc')
             ->first();
@@ -51,9 +51,9 @@ class Journal extends Model
         return $nextJournal;
     }
 
-    public static function getPreviousJournal($journalId)
+    public static function getPreviousJournal($id)
     {
-        $journal = self::getSingleJournal($journalId);
+        $journal = self::getSingleJournal($id);
         $previousJournal = self::where('created_at', '<', $journal->created_at)
             ->orderBy('created_at', 'desc')
             ->first();
@@ -61,6 +61,29 @@ class Journal extends Model
             return null;
         }
         return $previousJournal;
+    }
+
+    // NOT YET USED
+    public static function getPreviousNextArticle($id) {
+
+        $journal = self::getSingleJournal($id);
+
+        $previousJournal = self::where('created_at', '<', $journal->created_at)
+        ->orderBy('created_at', 'desc')
+        ->first();
+
+        $nextJournal = self::where('created_at', '>', $journal->created_at)
+        ->orderBy('created_at', 'asc')
+        ->first();
+
+        if (!$previousJournal || !$nextJournal) {
+            return null;
+        }
+
+        return [
+            '$previousJournal' => $previousJournal,
+            '$nextJournal' => $nextJournal,
+        ];
     }
 
 }

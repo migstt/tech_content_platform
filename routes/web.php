@@ -31,7 +31,9 @@ Route::controller(JournalController::class)->group(function () {
     Route::get('/', 'getAllJournal')->name('home');
     
     Route::get('/create', 'returnCreateJournalView')->name('create');
-    Route::get('/journal/{id}', 'getParsedJournal');
+
+    Route::get('/article/{id}/{title}', 'getParsedJournal');
+
     Route::post('/createjournal', 'storeJournal')->name('savejournal');
 });
 

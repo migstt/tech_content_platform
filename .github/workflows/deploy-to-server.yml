@@ -38,5 +38,9 @@ jobs:
           script: |
             cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
             bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
-            /usr/local/php82/bin/php composer.phar install --no-dev
-            /usr/local/php82/bin/php artisan migrate --force
+            ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
+            ${{ vars.PHP_BINARY_PATH }} artisan migrate --force
+            ${{ vars.PHP_BINARY_PATH }} artisan config:cache
+            ${{ vars.PHP_BINARY_PATH }} artisan event:cache
+            ${{ vars.PHP_BINARY_PATH }} artisan route:cache
+            ${{ vars.PHP_BINARY_PATH }} artisan view:cache
