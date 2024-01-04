@@ -14,6 +14,12 @@
                 </div> --}}
             </div>
             @forelse($journals as $journal)
+            @php
+            // Replace spaces in title with dash and make it lowercase
+            // for routing, showing in web the dashes title instead of
+            // the id.
+            $lowercaseDashedTitle = str_replace(' ', '-', strtolower($journal->title));
+            @endphp
             <div class="mt-6">
                 <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
                     <div class="flex items-center justify-between">
@@ -24,9 +30,17 @@
                         </a> --}}
                     </div>
                     <div class="mt-2">
-                        <a href="/journal/{{ $journal->id }}" class="text-2xl font-bold text-gray-700">{{
+
+
+                        
+                        {{-- <a href="/journal/{{ $journal->id }}" class="text-2xl font-bold text-gray-700">{{
+                            $journal->title }}
+                        </a> --}}
+                        <a href="/article/{{ $journal->id }}/{{ $lowercaseDashedTitle }}" class="text-2xl font-bold text-gray-700">{{
                             $journal->title }}
                         </a>
+
+
                         {{-- <p
                             class="block p-2 pl-0 pt-1 text-sm text-gray-600 max-h-16 overflow-hidden overflow-ellipsis">
                             {{ $journal->contents }}
@@ -120,7 +134,8 @@
                 <a href="{{ $new['link'] }}" class="rounded w-full flex flex-col md:flex-row mb-3">
                     <img src="{{ $new['image_url'] }}" class="block md:hidden lg:block rounded-md h- w-20 m-4 md:m-0" />
                     <div class="bg-white rounded px-4 flex items-center w-full">
-                        <p class="block p-2 my-2 pl-0 pt-1 text-sm text-gray-600 max-h-16 overflow-hidden overflow-ellipsis">
+                        <p
+                            class="block p-2 my-2 pl-0 pt-1 text-sm text-gray-600 max-h-16 overflow-hidden overflow-ellipsis">
                             {{ $new['title'] }}
                         </p>
                     </div>

@@ -54,7 +54,8 @@ class JournalController extends Controller
         return implode("\n", array_slice($lines, 0, 1));
     }
 
-    public static function getParsedJournal($id)
+    //Get parsed journal by it's title
+    public static function getParsedJournal($id, $title)
     {
         $journal = Journal::getSingleJournal($id);
         $parsedJournal = Journal::journalContentParseToMarkdown($journal);
