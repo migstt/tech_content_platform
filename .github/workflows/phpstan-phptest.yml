@@ -74,15 +74,15 @@ jobs:
       run: php artisan test
 
 
-  # If PHPSTAN and PHPUNIT succeeds, branch "develop" will be merged to branch "production"
-  # merge-develop-to-prod: 
-  #   needs: [phpstan-analyze, phpunit-test]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: everlytic/branch-merge@1.1.2
-  #       with:
-  #         github_token: ${{ secrets.GH_TOKEN }}
-  #         source_ref: "develop"
-  #         target_branch: "production"
-  #         commit_message_template: "[Automated] Merged {source_ref} into {target_branch}"
+  # If PHPSTAN and PHPUNIT succeeds, branch "1" will be merged to branch "2"
+  merge-develop-to-prod: 
+    needs: [phpstan-analyze, phpunit-test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.2
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
+          target_branch: "${{ secrets.MERGE_WORKFLOW_TARGET_BRANCH }}"
+          commit_message_template: "[Automated] Merged {source_ref} into {target_branch}"
