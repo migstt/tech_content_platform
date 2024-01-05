@@ -2,6 +2,7 @@ name: Merge after PHPStan Analyze && PHPUnit Test
 on:
   workflow_run:
     workflows: ["PHPStan Analyze && PHPUnit Test"]
+    # IGNORE UNEXPECTED VALUE EDITOR ERROR
     types:
       - success
 jobs:
