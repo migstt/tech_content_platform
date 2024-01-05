@@ -57,9 +57,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
     - name: Generate key
       run: php artisan key:generate
-    - name: Create Sqlite Database
-      run: touch database/database.sqlite
-    - name: Migrate Tables to Sqlite Database
+    - name: Migrate Tables to MySQL Database
       env: 
         # DB_CONNECTION: sqlite
         # DB_DATABASE: database/database.sqlite
