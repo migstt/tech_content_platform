@@ -1,9 +1,11 @@
-name: Merge after PHPStan Analyze && PHPUnit Test
+name: merge-after-phpstan-analyze-phpunit-test
 on:
   workflow_run:
-    workflows: ["PHPStan Analyze && PHPUnit Test"]
-    branches: [ develop ]
-    types: [ completed ]
+    workflows: [ phpstan-analyze-phpunit-test ]
+    branches: 
+      - develop 
+    types: 
+      - completed
 jobs:
   merge-branch:
     runs-on: ubuntu-latest

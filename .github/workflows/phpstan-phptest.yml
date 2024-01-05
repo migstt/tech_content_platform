@@ -1,4 +1,4 @@
-name: PHPStan Analyze && PHPUnit Test
+name: phpstan-analyze-phpunit-test
 
 on:
   push:
