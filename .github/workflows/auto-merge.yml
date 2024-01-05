@@ -2,11 +2,10 @@ name: Merge after PHPStan Analyze && PHPUnit Test
 on:
   workflow_run:
     workflows: ["PHPStan Analyze && PHPUnit Test"]
-    types:
-      - completed
+    branches: [ develop ]
+    types: [ completed ]
 jobs:
   merge-branch:
-  if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
