@@ -1,5 +1,5 @@
 # Name of the workflow
-name: Release
+name: create-release-on-tag-push
 
 # Run on every commit tag which begins with "v" (e.g., "v0.1.4") on branch production
 on:
