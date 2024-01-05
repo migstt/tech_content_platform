@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["PHPStan Analyze && PHPUnit Test"]
     types:
-      - completed
+      - success
 jobs:
   merge-branch:
     runs-on: ubuntu-latest
