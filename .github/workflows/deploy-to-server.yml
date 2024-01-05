@@ -1,4 +1,4 @@
-name: Deploy to Production Server
+name: deploy-to-subdomain
 run-name: Deploy Changes to Ronins Server
 on: 
   # push:
