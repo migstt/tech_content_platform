@@ -18,11 +18,11 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v3
 
-    # - name: Install Composer Dependencies
-    #   uses: php-actions/composer@v6
-    #   with:
-    #     php_version: "8.1"
-    #     version: "2.5.8"
+    - name: Install Composer Dependencies
+      uses: php-actions/composer@v6
+      with:
+        php_version: "8.1"
+        version: "2.5.8"
     
     - name: Run PHPStan Static Code Analysis
       uses: php-actions/phpstan@v3
