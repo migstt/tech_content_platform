@@ -58,16 +58,12 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
     - name: Migrate Tables to MySQL Database
-      env: 
-        # DB_CONNECTION: sqlite
-        # DB_DATABASE: database/database.sqlite
+      env:
         DB_CONNECTION: mysql
         DB_DATABASE: journal-db
       run: php artisan migrate
     - name: Run php unit test
-      env: 
-        # DB_CONNECTION: sqlite
-        # DB_DATABASE: database/database.sqlite
+      env:
         DB_CONNECTION: mysql
         DB_DATABASE: journal-db
       run: php artisan test
