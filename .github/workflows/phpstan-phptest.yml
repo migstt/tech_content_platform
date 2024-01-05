@@ -4,37 +4,25 @@ on:
   push:
     branches:
       - develop
-  # push:
-  #   branches:
-  #     - production
-
 jobs:
-
   phpstan-analyze:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-
     - name: Install Composer Dependencies
       uses: php-actions/composer@v6
       with:
         php_version: "8.1"
         version: "2.5.8"
-    
     - name: Run PHPStan Static Code Analysis
       uses: php-actions/phpstan@v3
       with:
         path: app/ config/ database/ public/ routes/web.php tests/ resources/
   
   phpunit-test:
-
     runs-on: ubuntu-latest
-
-    # needs: phpstan-analyze
-      
+    # needs: phpstan-analyze 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -42,7 +30,6 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
-
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v3
@@ -51,38 +38,32 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
-
     - name: Install composer dependencies
       run: composer install --prefer-dist --no-progress
-
     - name: Generate key
       run: php artisan key:generate
-
     - name: Create Sqlite Database
       run: touch database/database.sqlite
-
     - name: Migrate Tables to Sqlite Database
       env: 
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan migrate
-
     - name: Run php unit test
       env: 
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan test
 
-
-  # If PHPSTAN and PHPUNIT succeeds, branch "1" will be merged to branch "2"
-  merge-develop-to-prod: 
-    needs: [phpstan-analyze, phpunit-test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: everlytic/branch-merge@1.1.2
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
-          target_branch: "${{ secrets.MERGE_WORKFLOW_TARGET_BRANCH }}"
-          commit_message_template: "[Automated] Merged {source_ref} into {target_branch}"
+  # If PHPSTAN and PHPUNIT succeeds, branch "source" will be merged to branch "target"
+  # merge-develop-to-prod: 
+  #   needs: [phpstan-analyze, phpunit-test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: everlytic/branch-merge@1.1.2
+  #       with:
+  #         github_token: ${{ secrets.GH_TOKEN }}
+  #         source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
+  #         target_branch: "${{ secrets.MERGE_WORKFLOW_TARGET_BRANCH }}"
+  #         commit_message_template: "[Automated] Merged {source_ref} into {target_branch}"

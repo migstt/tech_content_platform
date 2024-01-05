@@ -2,7 +2,7 @@ name: merge-after-phpstan-analyze-phpunit-test
 on:
   workflow_run:
     workflows: ["phpstan-analyze-phpunit-test"]
-    types: 
+    types:
       - completed
 jobs:
   merge-branch:
