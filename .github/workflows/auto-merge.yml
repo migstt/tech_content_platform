@@ -2,9 +2,12 @@ name: Merge after PHPStan Analyze && PHPUnit Test
 on:
   workflow_run:
     workflows: ["PHPStan Analyze && PHPUnit Test"]
-    # IGNORE UNEXPECTED VALUE EDITOR ERROR
     types:
       - success
+    
+    # WORKING, BUT STILL MERGES IF THERES ERROR.
+    # types:
+    #   - completed
 jobs:
   merge-branch:
     runs-on: ubuntu-latest
