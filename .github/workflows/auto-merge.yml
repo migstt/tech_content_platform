@@ -4,10 +4,6 @@ on:
     workflows: ["PHPStan Analyze && PHPUnit Test"]
     types:
       - success
-    
-    # WORKING, BUT STILL MERGES IF THERES ERROR.
-    # types:
-    #   - completed
 jobs:
   merge-branch:
     runs-on: ubuntu-latest
