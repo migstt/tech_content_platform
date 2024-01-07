@@ -16,7 +16,7 @@ jobs:
         php_version: "8.2"
         version: "2.5.8"
     - name: Run PHPStan Static Code Analysis
-    
+
       # This uses the official PHPStan GitHub Action
       # uses: php-actions/phpstan@v3
       # with:
@@ -36,7 +36,7 @@ jobs:
           # The MySQL docker container requires these environment variables to be set
           # so we can create and migrate the test database.
           # See: https://hub.docker.com/_/mysql
-          MYSQL_DATABASE: journal-db
+          MYSQL_DATABASE: test-db
           MYSQL_ROOT_PASSWORD: pass
         ports:
           # Opens port 3306 on service container and host
@@ -66,15 +66,19 @@ jobs:
     - name: Migrate Tables to MySQL Database
       env:
         DB_CONNECTION: mysql
-        DB_DATABASE: journal-db
+        DB_DATABASE: test-db
       run: php artisan migrate
     - name: Run php unit test
       env:
         DB_CONNECTION: mysql
-        DB_DATABASE: journal-db
+        DB_DATABASE: test-db
       run: php artisan test
 
-  # If PHPSTAN and PHPUNIT succeeds, branch "source" will be merged to branch "target"
+
+
+  # If phpstan-analyze and phpunit-test job succeeds, branch "source" will be merged to branch "target".
+  # Also created a separate workflow that can be triggered when this workflow succeeds.
+
   # merge-develop-to-prod: 
   #   needs: [phpstan-analyze, phpunit-test]
   #   runs-on: ubuntu-latest
