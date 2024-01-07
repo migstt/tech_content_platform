@@ -6,14 +6,14 @@ on:
       - completed
 jobs:
   merge-branch:
-    # Runs the steps only if the phpstan-analyze-phpunit-test is successfull
+    # Runs the steps only if the phpstan-analyze-phpunit-test workflow is successfull
     # Doesn't mean it's completed then i'ts successfull
     # https://github.com/orgs/community/discussions/26238
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: migoy99/branch-merge@1.1.2
+      - uses: everlytic/branch-merge@1.1.2
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
