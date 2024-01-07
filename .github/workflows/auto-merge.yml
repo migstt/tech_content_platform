@@ -13,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # forked action from everlytic
-      - uses: migoy99/branch_merge
+      - uses: everlytic/branch-merge@1.1.2
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
