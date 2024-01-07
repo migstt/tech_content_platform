@@ -16,9 +16,10 @@ jobs:
         php_version: "8.1"
         version: "2.5.8"
     - name: Run PHPStan Static Code Analysis
-      uses: php-actions/phpstan@v3
-      with:
-        path: app/ config/ database/ public/ routes/web.php tests/ resources/
+      # uses: php-actions/phpstan@v3
+      # with:
+      #   path: app/ config/ database/ public/ routes/web.php tests/ resources/
+      run : ./vendor/bin/phpstan analyse app config database public routes/web.php tests resources --memory-limit=2g
   
   phpunit-test:
     runs-on: ubuntu-latest
