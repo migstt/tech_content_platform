@@ -6,7 +6,7 @@ on:
       - completed
 jobs:
   merge-branch:
-    # Runs the steps only if the phpstan-analyze-phpunit-test workflow is successfull
+    # Runs the steps only if the phpstan-analyze-phpunit-test workflow is successful
     # Doesn't mean it's completed then i'ts successfull
     # https://github.com/orgs/community/discussions/26238
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
