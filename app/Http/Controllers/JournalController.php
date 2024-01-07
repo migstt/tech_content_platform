@@ -81,24 +81,17 @@ class JournalController extends Controller
     public static function generateIndexHTML($journalContents)
     {
         preg_match_all('/<h[1-3][^>]*>(.*?)<\/h[1-6]>/i', $journalContents, $matches);
-    
         $index = "<ul class='max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400'>";
-    
         foreach ($matches[0] as $i => $match) {
             $text = trim(strip_tags($matches[1][$i])); // Strip HTML tags from header text
             $slug = strtolower(str_replace("--", "-", preg_replace('/[^\da-z]/i', '-', $text)));
             $id = 'section-' . $slug;
-    
             // Add id attribute to the corresponding header tag
             $headerWithId = str_replace('<h', '<h2 id="' . $id . '"', $match);
             $journalContents = str_replace($match, $headerWithId, $journalContents);
-    
             $index .= '<li class="toc-item" data-target="' . $id . '"><a href="#' . $id . '">' . $text . '</a></li>';
-
         }
-    
         $index .= "</ul>";
-    
         return ["html" => $journalContents, "index" => $index];
     }
 }
