@@ -1,22 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-{{-- <div class="mx-20 content-center mt-20 mb-20">
-    <h5 class="text-3xl font-extrabold dark:text-white">{!! $journal->title !!}</h5>
-    <p class="mb-4 text-lg font-normal text-gray-500 dark:text-gray-400">{!! $journal->author !!},
-        {{ date('M Y', strtotime($journal->created_at)) }}
-    </p>
-    <div class="text-base font-normal text-gray-500 dark:text-gray-400 pre-scrollable leading-6
-        prose prose-blockqoute custom-content">
-        {!! $parsedContents !!}
-    </div>
-</div> --}}
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-geay-100 dark:bg-gray-800 antialiased mt-10 blogs-section mx-20">
     <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
         <!-- Article Content -->
         <article
-            class="bg-white px-5 py-5 rounded-xl mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+            class="bg-white px-5 py-5 rounded-t-xl mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 lg:mb-6 not-format">
                 <!-- Author Info -->
                 <address class="flex items-center mb-6 not-italic">
@@ -50,20 +40,12 @@
                 {!! $parsedJournalContentsv2 !!}
             </div>
         </article>
-
         <div class="sticky top-0 max-h-screen overflow-y-auto">
-
-
             <!-- Table of Contents -->
             <div class="sticky top-0 max-h-screen overflow-y-auto mt-10">
                 <fieldset class="text-base bg-white rounded-lg p-2 mb-4 max-w-sm mx-auto mt-10">
-                    {{-- <legend class="px-2 text-lg font-semibold 5">
-                        Table of contents
-                    </legend> --}}
+                    <legend></legend>
                     <div class="tablecontents sticky top-0 max-h-screen overflow-y-auto mx-2 mb-3">
-                        {{-- {!!
-                        App\Http\Controllers\JournalController::generateIndexHTML($parsedJournalContents)['index'] !!}
-                        --}}
                         <ul>
                             <li class="list-none py-2 font-black text-green-700">TABLE OF CONTENTS</li>
                         </ul>
@@ -75,10 +57,8 @@
             <!-- Share Card -->
             <div class="sticky top-0 max-h-screen overflow-y-auto">
                 <fieldset class="text-lg rounded-lg p-2 mb-4 max-w-sm mx-auto bg-white">
-                    {{-- <legend class="px-2 text-lg font-semibold">
-                        Share
-                    </legend> --}}
-                    <ul class="flex justify-center space-x-2 list-none mb-3 mt-3">                    
+                    <legend></legend>
+                    <ul class="flex justify-center space-x-2 list-none mb-3 mt-3">
                         <button type="button" data-te-ripple-init data-te-ripple-color="light"
                             class="inline-block rounded px-4 py-3 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                             style="background-color: #1877f2">
@@ -111,8 +91,8 @@
             </div>
         </div>
     </div>
+    
     <!-- PREVIOUS AND NEXT ARTICLES -->
-
     <div class="flex items-center justify-center mt-10 lg:px-0 sm:px-6 px-4">
         <div class="mx-10 w-full flex items-center justify-between border-t border-b border-gray-300">
             <div class="flex items-center pt-5 pb-5 text-gray-600 hover:text-green-700 cursor-pointer">
@@ -127,10 +107,6 @@
                     <path d="M1.1665 4.00002L4.49984 0.666687" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-
-                {{-- Replace spaces in title with dash and make it lowercase
-                for routing, showing in web the dashes title instead of
-                the id. --}}
                 @php
                 $previousJournalTransformed = str_replace(' ', '-', strtolower($previousJournal->title));
                 @endphp
@@ -144,10 +120,6 @@
                 @if ($nextJournal == null)
                 <p class="text-2xl font-medium leading-none mr-3 nextprev"></p>
                 @else
-
-                {{-- Replace spaces in title with dash and make it lowercase
-                for routing, showing in web the dashes title instead of
-                the id. --}}
                 @php
                 $nextJournalTransformed = str_replace(' ', '-', strtolower($nextJournal->title));
                 @endphp
