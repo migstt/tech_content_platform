@@ -12,6 +12,8 @@ jobs:
   deploy-to-ronins:
     name: Deploy to Ronins server
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -51,12 +53,12 @@ jobs:
             - uses: chrnorm/deployment-action@v2
 
 
-            
+
       - name: Create GitHub deployment
         uses: chrnorm/deployment-action@v2
         id: deployment
         with:
-          token: '${{ github.token }}'
+          token: '${{ secrets.GH_TOKEN }}'
           environment-url: http://my-app-url.com
           environment: production
 
