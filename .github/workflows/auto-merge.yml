@@ -18,4 +18,4 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           source_ref: "${{ secrets.MERGE_WORKFLOW_SOURCE_BRANCH }}"
           target_branch: "${{ secrets.MERGE_WORKFLOW_TARGET_BRANCH }}"
-          commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
+          commit_message_template: "[Automated] Merged {source_ref} into {target_branch}"
