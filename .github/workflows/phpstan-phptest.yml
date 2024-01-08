@@ -15,16 +15,16 @@ jobs:
   #     with:
   #       php_version: "8.2"
   #       version: "2.5.8"
-    # - name: Run PHPStan Static Code Analysis
+  #   - name: Run PHPStan Static Code Analysis
 
-      # This uses the official PHPStan GitHub Action
-      # uses: php-actions/phpstan@v3
-      # with:
-      #   path: app/ config/ database/ public/ routes/web.php tests/ resources/
-      #   memory-limit: 2g
+  #     This uses the official PHPStan GitHub Action
+  #     uses: php-actions/phpstan@v3
+  #     with:
+  #       path: app/ config/ database/ public/ routes/web.php tests/ resources/
+  #       memory-limit: 2g
 
-      # Using Locally Installed PHPStan via Composer
-      # run : ./vendor/bin/phpstan analyse app config database public routes/web.php tests resources --memory-limit=2g
+  #     Using Locally Installed PHPStan via Composer
+  #     run : ./vendor/bin/phpstan analyse app config database public routes/web.php tests resources --memory-limit=2g
   
   ptpstan-phpunit:
     runs-on: ubuntu-latest
