@@ -51,12 +51,12 @@ jobs:
             ${{ vars.PHP_BINARY_PATH }} artisan route:cache
             ${{ vars.PHP_BINARY_PATH }} artisan view:cache
 
-            
+
       - name: Create GitHub deployment
         uses: chrnorm/deployment-action@v2
         id: deployment
         with:
           token: '${{ secrets.GH_TOKEN }}'
-          environment-url: mtrinidad.ronins.site
+          environment-url: http://mtrinidad.ronins.site
           environment: production
 
