@@ -26,7 +26,7 @@ jobs:
       # Using Locally Installed PHPStan via Composer
       # run : ./vendor/bin/phpstan analyse app config database public routes/web.php tests resources --memory-limit=2g
   
-  phpunit-test:
+  ptpstan-phpunit:
     runs-on: ubuntu-latest
     # needs: phpstan-analyze
     services:
