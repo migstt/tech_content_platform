@@ -30,8 +30,12 @@ jobs:
           #   eval "$(ssh-agent)"
           #   ssh-add ${{ secrets.SSH_P_KEY_PATH }}
           #   git pull origin ${{ vars.SOURCE_BRANCH_PULL }}
-          #   /usr/local/php82/bin/php composer.phar install --no-dev
-          #   /usr/local/php82/bin/php artisan migrate --force
+          #   ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
+          #   ${{ vars.PHP_BINARY_PATH }} artisan migrate --force
+          #   ${{ vars.PHP_BINARY_PATH }} artisan config:cache
+          #   ${{ vars.PHP_BINARY_PATH }} artisan event:cache
+          #   ${{ vars.PHP_BINARY_PATH }} artisan route:cache
+          #   ${{ vars.PHP_BINARY_PATH }} artisan view:cache
 
           # TAG BASED DEPLOYMENT
           # Fetches and Checkouts the latest tag from remote repo
@@ -44,3 +48,15 @@ jobs:
             ${{ vars.PHP_BINARY_PATH }} artisan event:cache
             ${{ vars.PHP_BINARY_PATH }} artisan route:cache
             ${{ vars.PHP_BINARY_PATH }} artisan view:cache
+            - uses: chrnorm/deployment-action@v2
+
+
+            
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@v2
+        id: deployment
+        with:
+          token: '${{ github.token }}'
+          environment-url: http://my-app-url.com
+          environment: production
+
