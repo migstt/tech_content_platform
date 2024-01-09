@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 use App\Models\Journal;
 use App\Models\News;
 use Illuminate\Support\Str;
-use Symfony\Component\ErrorHandler\ThrowableUtils;
 
 class JournalController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public static function returnCreateJournalView()
     {
         return view('create-journal');

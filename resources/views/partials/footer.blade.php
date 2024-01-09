@@ -7,7 +7,7 @@
     <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500
     dark:text-gray-400 sm:mt-0 delay-tran list-none">
         <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 delay-tran">About me</a>
+            <a href="#" class="mr-4 hover:underline md:mr-6 delay-tran">About</a>
         </li>
         <li>
             <a href="#" class="hover:underline delay-tran">Contact</a>
