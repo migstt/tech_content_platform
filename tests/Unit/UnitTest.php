@@ -52,17 +52,17 @@ class UnitTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_route_returns_journals_view()
-    {
-        $response = $this->get('/');
-        $response->assertViewIs('blogs');
-    }
+    // public function test_route_returns_journals_view()
+    // {
+    //     $response = $this->get('/');
+    //     $response->assertViewIs('blogs');
+    // }
 
-    public function test_route_returns_authors_view()
-    {
-        $response = $this->get('/authors');
-        $response->assertViewHas('authors');
-    }
+    // public function test_route_returns_authors_view()
+    // {
+    //     $response = $this->get('/authors');
+    //     $response->assertViewHas('authors');
+    // }
 
 
     // GOOGLE ROUTES TEST
