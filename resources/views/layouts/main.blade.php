@@ -52,7 +52,7 @@
 </head>
 
 <body class="blogs-section bg-gray-100">
-    @include('partials.navigation')
+    @include('partials.nav')
     <div class="container mx-auto justify-center items-center min-h-screen">
         @yield('content')
     </div>
