@@ -40,7 +40,7 @@
                 {!! $parsedJournalContentsv2 !!}
             </div>
         </article>
-        <div class="sticky top-0 max-h-screen overflow-y-auto">
+        <div class="sticky top-0 max-h-screen overflow-y-auto w-full">
             <!-- Table of Contents -->
             <div class="sticky top-0 max-h-screen overflow-y-auto mt-10">
                 <fieldset class="text-base bg-white rounded-lg p-2 mb-4 max-w-sm mx-auto mt-10">

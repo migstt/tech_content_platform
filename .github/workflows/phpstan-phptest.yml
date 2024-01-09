@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+  workflow_dispatch:
 jobs:
   # phpstan-analyze:
   #   runs-on: ubuntu-latest
@@ -27,7 +28,9 @@ jobs:
   #     run : ./vendor/bin/phpstan analyse app config database public routes/web.php tests resources --memory-limit=2g
   
   ptpstan-phpunit:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: self-host-ubunto-cont
+
     # needs: phpstan-analyze
     services:
       mysql:
