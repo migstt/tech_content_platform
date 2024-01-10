@@ -33,26 +33,20 @@ jobs:
             IdentityFile ~/.ssh/deploy-key
             StrictHostKeyChecking no
           END
+          ssh prod
+          cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
+          bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
+          ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
+          ${{ vars.PHP_BINARY_PATH }} artisan migrate --force
+          ${{ vars.PHP_BINARY_PATH }} artisan config:cache
+          ${{ vars.PHP_BINARY_PATH }} artisan event:cache
+          ${{ vars.PHP_BINARY_PATH }} artisan route:cache
+          ${{ vars.PHP_BINARY_PATH }} artisan view:cache
+          exit
         env:
           SSH_USER: ${{ secrets.PROD_SSH_USER }}
           SSH_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
-      - name: Connect to server via SSH
-        run: ssh -T prod
-          
-      - name: Deploy changes, Checkout latest Tag, Run Laravel Deployment Tasks. 
-        run: |
-            cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
-            bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
-            ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
-            ${{ vars.PHP_BINARY_PATH }} artisan migrate --force
-            ${{ vars.PHP_BINARY_PATH }} artisan config:cache
-            ${{ vars.PHP_BINARY_PATH }} artisan event:cache
-            ${{ vars.PHP_BINARY_PATH }} artisan route:cache
-            ${{ vars.PHP_BINARY_PATH }} artisan view:cache
-
-      - name: Connect to server via SSH
-        run: exit
 
       - name: Update deployment status (success)
         if: success()
