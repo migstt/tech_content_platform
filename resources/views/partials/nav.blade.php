@@ -1,46 +1,61 @@
 <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 bg-opacity-30 backdrop-blur-sm" id="navbar">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TechTickle</span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
-            <ul
-                class="items-center justify-between mr-12 flex flex-col font-small rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700 list-none">
+            <ul class="items-center justify-between mr-12 flex flex-col font-small rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700 list-none">
                 <li class="flex items-center list-item-hover">
-                    <!-- Added class for hover effect -->
-                    <svg class="svg-hover" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write">
-                        <path
-                            d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z"
-                            fill="currentColor"></path>
-                        <path
-                            d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.10-.10.26-.10.36 0l1.64 1.64c.10.10.10.26 0 .36L19.5 6.5m-2-2l2 2"
-                            stroke="currentColor"></path>
-                    </svg>
-                    <a href="#"
-                        class="ml-1 block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 md:dark:hover:text-green-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Write
+                    <a href="{{ route('write') }}"
+                       class="ml-1 flex items-center py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 md:dark:hover:text-green-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+            
+                        <svg class="svg-hover" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write">
+                            <path
+                                d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z"
+                                fill="currentColor"></path>
+                            <path
+                                d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.10-.10.26-.10.36 0l1.64 1.64c.10.10.10.26 0 .36L19.5 6.5m-2-2l2 2"
+                                stroke="currentColor"></path>
+                        </svg>
+            
+                        <span class="ml-1">Write</span>
                     </a>
                 </li>
             </ul>
+            
 
+            @auth
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul
+                    class="flex flex-col p-4 md:p-0 mt-4 font-small border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 list-none">
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            class="ml-4 block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-700 md:p-0 md:dark:hover:text-green-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Log out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            @endauth
+
+            @guest
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul
                     class="flex flex-col p-4 md:p-0 mt-4 font-small border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 list-none">
                     <li>
-                        <a href="#"
+                        <a href="{{ route('google.auth') }}"
                             class="ml-4 block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-700 md:p-0 md:dark:hover:text-green-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sign
                             in
                         </a>
                     </li>
                 </ul>
             </div>
-
-
             <button type="button"
                 class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-small rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Sign up
+                <a href="{{ route('google.auth') }}">Sign up</a>
             </button>
+            @endguest
+
 
 
             <button data-collapse-toggle="navbar-sticky" type="button"

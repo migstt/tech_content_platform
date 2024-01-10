@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 
 class LoginController extends Controller
@@ -23,13 +25,26 @@ class LoginController extends Controller
         // Check if the user already exists in database
         $user = User::all()->where('email', $googleUser->email)->first();
 
-        // // Check if the user already exists in database    
-        if (!$user) {
+        // // Check if the user already exists in database
+        if (!$user)
+        {
             // If the user doesnt exist, create a new user record
             $user = User::createNewUser($googleUser->name, $googleUser->email, $googleUser->avatar);
         }
 
         Auth::login($user);
+
+        return redirect('/');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
 }
