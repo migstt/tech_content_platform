@@ -24,17 +24,20 @@ use Illuminate\Support\Facades\Auth;
 Route::controller(LoginController::class)->group(function () {
     Route::get('/auth/google', 'redirectToGoogle')->name('google.auth');
     Route::get('/auth/google-callback', 'handleGoogleCallback');
+    Route::get('/logout', 'logout')->name('logout');
 });
 
 Route::controller(JournalController::class)->group(function () {
-    // JOURNALS, AUTHORS AND NEWS
-    Route::get('/', 'getAllJournal')->name('home');
-    
-    Route::get('/create', 'returnCreateJournalView')->name('create');
 
+    Route::get('/', 'getAllJournal')->name('home');
     Route::get('/article/{id}/{title}', 'getParsedJournal');
 
-    Route::post('/createjournal', 'storeJournal')->name('savejournal');
+    Route::middleware(['auth'])->group(function () {
+        Route::post('/createjournal', 'storeJournal')->name('savejournal');
+    });
+
+    Route::get('/write', 'returnCreateJournalView')->name('write')->middleware('auth');
+
 });
 
 // ROUTE FOR TECH NEWS PAGE
