@@ -20,6 +20,9 @@ jobs:
           token: '${{ secrets.GH_TOKEN }}'
           environment-url: http://mtrinidad.ronins.site
           environment: production
+        
+      - name: Test echo deployment dir
+        run: echo "${{ secrets.DEPLOYMENT_DIRECTORY }}"
 
       - name: Set up SSH and Deploy changes to Ronins Server
         run: |
@@ -34,6 +37,7 @@ jobs:
             StrictHostKeyChecking no
           END
           ssh -T prod
+          sleep 10s
           cd "${{ secrets.DEPLOYMENT_DIRECTORY }}"
           bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
           ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
