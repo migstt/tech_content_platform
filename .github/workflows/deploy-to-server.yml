@@ -15,8 +15,8 @@ jobs:
     permissions:
       deployments: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # - name: Checkout code
+      #   uses: actions/checkout@v2
 
       - name: Create GitHub deployment
         uses: chrnorm/deployment-action@v2
@@ -27,12 +27,27 @@ jobs:
           environment: production
 
       - name: Set up SSH and Deploy changes to Ronins Server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PROD_SSH_HOST }}
-          username: ${{ secrets.PROD_SSH_USER }}
-          key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
-          port: ${{ vars.PORT_SERVER }}
+        # uses: appleboy/ssh-action@master
+        # with:
+        #   host: ${{ secrets.PROD_SSH_HOST }}
+        #   username: ${{ secrets.PROD_SSH_USER }}
+        #   key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+        #   port: ${{ vars.PORT_SERVER }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deploy-key
+          chmod 600 ~/.ssh/deploy-key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/deploy-key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          SSH_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
 
           # BRANCH BASED DEPLOYMENT
           # script: | 
