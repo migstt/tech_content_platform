@@ -48,9 +48,20 @@ class UnitTest extends TestCase
 
     public function test_route_returns_create_journal_view()
     {
-        $response = $this->get(route('create'));
+        // Assuming we have a user created or seeded in our database
+        $name = 'John Doe';
+        $email = 'johndoe@example.com';
+        $avatar = 'https://example.com/avatar.jpg';
+
+        $user = User::createNewUser($name, $email, $avatar);
+    
+        // Use the actingAs method to authenticate the user
+        $response = $this->actingAs($user)->get(route('write'));
+    
+        // Assert the status code
         $response->assertStatus(200);
     }
+    
 
     // public function test_route_returns_journals_view()
     // {
