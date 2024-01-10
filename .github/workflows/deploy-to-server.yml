@@ -1,9 +1,6 @@
 name: deploy-to-subdomain
 run-name: Deploy Changes to Ronins Server
 on: 
-  # push:
-  #   branches:
-  #     - production
   release:
     types:
       - created
@@ -15,8 +12,6 @@ jobs:
     permissions:
       deployments: write
     steps:
-      # - name: Checkout code
-      #   uses: actions/checkout@v2
 
       - name: Create GitHub deployment
         uses: chrnorm/deployment-action@v2
@@ -27,18 +22,12 @@ jobs:
           environment: production
 
       - name: Set up SSH and Deploy changes to Ronins Server
-        # uses: appleboy/ssh-action@master
-        # with:
-        #   host: ${{ secrets.PROD_SSH_HOST }}
-        #   username: ${{ secrets.PROD_SSH_USER }}
-        #   key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
-        #   port: ${{ vars.PORT_SERVER }}
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/deploy-key
           chmod 600 ~/.ssh/deploy-key
           cat >>~/.ssh/config <<END
-          Host staging
+          Host prod
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/deploy-key
@@ -48,23 +37,11 @@ jobs:
           SSH_USER: ${{ secrets.PROD_SSH_USER }}
           SSH_KEY: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.PROD_SSH_HOST }}
-
-          # BRANCH BASED DEPLOYMENT
-          # script: | 
-          #   cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
-          #   eval "$(ssh-agent)"
-          #   ssh-add ${{ secrets.SSH_P_KEY_PATH }}
-          #   git pull origin ${{ vars.SOURCE_BRANCH_PULL }}
-          #   ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
-          #   ${{ vars.PHP_BINARY_PATH }} artisan migrate --force
-          #   ${{ vars.PHP_BINARY_PATH }} artisan config:cache
-          #   ${{ vars.PHP_BINARY_PATH }} artisan event:cache
-          #   ${{ vars.PHP_BINARY_PATH }} artisan route:cache
-          #   ${{ vars.PHP_BINARY_PATH }} artisan view:cache
-
-          # TAG BASED DEPLOYMENT
-          # Fetches and Checkouts the latest tag from remote repo
-          script: |
+      - name: Connect to server via SSH
+        run: ssh prod
+          
+      - name: Deploy changes, Checkout latest Tag, Run Laravel Deployment Tasks. 
+        run: |
             cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
             bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
             ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
@@ -73,6 +50,9 @@ jobs:
             ${{ vars.PHP_BINARY_PATH }} artisan event:cache
             ${{ vars.PHP_BINARY_PATH }} artisan route:cache
             ${{ vars.PHP_BINARY_PATH }} artisan view:cache
+
+      - name: Connect to server via SSH
+        run: exit
 
       - name: Update deployment status (success)
         if: success()
