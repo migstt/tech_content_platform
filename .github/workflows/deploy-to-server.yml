@@ -42,6 +42,7 @@ jobs:
           
       - name: Deploy changes, Checkout latest Tag, Run Laravel Deployment Tasks. 
         run: |
+            ssh prod
             cd ${{ secrets.DEPLOYMENT_DIRECTORY }}
             bash ${{ secrets.FETCH_CHECKOUT_TAG_SCRIPT_PATH }}
             ${{ vars.PHP_BINARY_PATH }} composer.phar install --no-dev
