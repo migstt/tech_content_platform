@@ -1,4 +1,4 @@
-# Visit [mtrinidad.ronins.site](https://mtrinidad.ronins.site) to explore the Tech Journal app in action.
+# Visit [mtrinidad.ronins.site](mtrinidad.ronins.site) to explore the Tech Journal app in action.
 
 
 # Tech Journal App
