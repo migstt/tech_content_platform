@@ -5,6 +5,7 @@
     <title>Tech Journal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
@@ -51,9 +52,9 @@
 
 </head>
 
-<body class="blogs-section bg-gray-100">
+<body class="bg-gray-100 blogs-section">
     @include('partials.nav')
-    <div class="container mx-auto justify-center items-center min-h-screen">
+    <div class="container items-center justify-center min-h-screen mx-auto">
         @yield('content')
     </div>
     @include('partials.footer')
